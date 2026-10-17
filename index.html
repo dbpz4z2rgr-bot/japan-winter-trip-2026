@@ -92,6 +92,8 @@
   .hotel{font-size:12px; color:var(--sub); margin-top:10px; padding-top:6px; border-top:1px dashed var(--line)}
   .backup{font-size:12px; color:var(--blue); margin-top:6px; padding-left:8px; border-left:2px solid var(--blue)}
   .backup b{font-weight:500}
+  .xhs-note{font-size:12px; color:var(--red); margin-top:6px; padding-left:8px; border-left:2px solid var(--red); line-height:1.55}
+  .xhs-note b{font-weight:500}
   .note{width:100%; min-height:52px; margin-top:8px; padding:8px 10px; border:1px solid var(--line); background:transparent; color:var(--ink); font:inherit; font-size:13px; resize:vertical}
   .note:focus{outline:2px solid color-mix(in srgb,var(--blue) 40%,transparent); outline-offset:1px}
   .todo-add{display:grid; grid-template-columns:1fr 140px 110px 76px; gap:8px; margin:10px 0 18px}
@@ -614,7 +616,7 @@
 </main>
 
 <div class="theme-dock" role="group" aria-label="背景明暗模式">
-  <button type="button" data-theme-mode="auto" aria-pressed="true" title="按当地时间自动切换：6:00—18:00 亮色，其余暗色">自动</button>
+  <button type="button" data-theme-mode="auto" aria-pressed="true" title="按当地时间自动切换：6:00—18:00 亮色，其余暗色"><span class="mode-icon" id="autoIcon">◐</span> 自动</button>
   <button type="button" data-theme-mode="light" aria-pressed="false" title="手动锁定亮色"><span class="mode-icon">☀</span> 亮</button>
   <button type="button" data-theme-mode="dark" aria-pressed="false" title="手动锁定暗色"><span class="mode-icon">☾</span> 暗</button>
 </div>
@@ -768,6 +770,20 @@ const BACKUPS = {
   '2027-01-01':'明治神宫人太多就改代代木公园、表参道散步。',
   '2027-01-02':'Shibuya Sky 天气差就改涩谷 PARCO 或室内商场。',
   '2027-01-05':'浅草线延误就改去京成上野坐 Skyliner。'
+};
+
+const XHS_NOTES = {
+  '2026-12-25':'USJ：提前下载 App 并绑定门票，入园第一件事预约超级任天堂世界；单人通道说“Single”；不带自拍杆；找工作人员要贴纸。',
+  '2026-12-26':'京都站附近西本愿寺 12 月初银杏很漂亮，时间够可顺路；下鸭神社、京都御苑游客少，适合替代人挤人的点。',
+  '2026-12-27':'伏见稻荷 + 宇治不要贪多，电车/公交班次间隔大；给宇治留 2—3 小时，平等院和抹茶店排队都要时间。',
+  '2026-12-28':'岚山天气不好就别硬去，奈良或京都御苑是替代；京都 12 月 16:30 左右就天黑，别把金阁寺排太晚。',
+  '2026-12-29':'河口湖站前罗森机位人很多，不必专程排；山中湖/河口湖公交错过一班可能等 1 小时，按时刻表提前到站。',
+  '2026-12-30':'河口湖租自行车约 2 小时 ¥1,000，逆时针从平野之滨骑到长池亲水公园；风大或路面结冰就不要骑。',
+  '2026-12-31':'东京跨年可选都厅 TOKYO NIGHTTIME PROJECT 或王子狐狸巡游（23:00 后到即可）；浅草寺人最多，去就 22:00 前到。',
+  '2027-01-01':'1.1 百货全关，便利店/药妆/唐吉诃德/连锁牛丼开；浅草寺、明治神宫是一年最挤，尽量 9 点前到。',
+  '2027-01-02':'1.2 是全年最挤：百货初卖、皇居参贺、新干线返程撞在一起。只保留涩谷 Sky，别再加银座/百货。',
+  '2027-01-03':'美术馆是阶梯式开馆，东博 1/2 起开；1/3 去上野博物馆可行，出发前再确认当日开馆时间。',
+  '2027-01-04':'1.4 是日本恢复的第一天，银座、东京站丸之内安排在这天比 1.2 舒服。'
 };
 
 const DEFAULT_TODOS = [
@@ -995,6 +1011,7 @@ function renderDays(){
     const live = liveWeather[d.date];
     const wx = w ? '<span class="wx' + (live ? ' live' : '') + '" title="' + (live ? '最新预报' : '气候平均值') + '">' + (live ? live.icon : w.icon) + ' ' + (live ? live.high : w.high) + '°/' + (live ? live.low : w.low) + '°</span>' : '';
     const backup = BACKUPS[d.date] ? '<div class="backup"><b>B 方案</b> · ' + escapeHtml(BACKUPS[d.date]) + '</div>' : '';
+    const xhs = XHS_NOTES[d.date] ? '<div class="xhs-note"><b>小红书建议</b> · ' + escapeHtml(XHS_NOTES[d.date]) + '</div>' : '';
     return '<article class="day" data-city="' + d.city + '">' +
       '<div class="day-date"><strong>' + d.md + '</strong><span>' + d.wd + '</span></div>' +
       '<div class="day-body">' +
@@ -1002,6 +1019,7 @@ function renderDays(){
         '<ul class="items">' + items + '</ul>' +
         '<div class="hotel">宿 · ' + escapeHtml(d.hotel) + '</div>' +
         backup +
+        xhs +
         '<textarea class="note" data-note="' + d.date + '" placeholder="这一天的备注、预约号、临时调整…">' + note + '</textarea>' +
       '</div></article>';
   }).join('');
@@ -1540,6 +1558,8 @@ function applyTheme(){
   document.documentElement.dataset.theme = theme;
   const meta = document.getElementById('themeColor');
   if(meta) meta.setAttribute('content', theme === 'dark' ? '#151514' : '#F7F5F0');
+  const autoIcon = document.getElementById('autoIcon');
+  if(autoIcon) autoIcon.textContent = theme === 'light' ? '☀' : '☾';
   applyMapTheme(theme);
   document.querySelectorAll('[data-theme-mode]').forEach(btn => {
     const active = btn.dataset.themeMode === themeMode;
