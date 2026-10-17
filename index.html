@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>日本冬季行程｜2026.12.22—2027.01.06</title>
+<meta name="theme-color" content="#F7F5F0" id="themeColor">
+<script>
+(function(){
+  try{
+    var m = localStorage.getItem('jp-theme-v1') || 'auto';
+    var h = new Date().getHours();
+    var t = m === 'auto' ? ((h >= 6 && h < 18) ? 'light' : 'dark') : m;
+    document.documentElement.dataset.theme = t;
+  }catch(e){}
+})();
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js" defer></script>
+<style>
+  :root{
+    --paper:#F7F5F0; --ink:#1A1A1A; --sub:#5C5A56; --line:#D4D0C5;
+    --card:#EBE8E1; --red:#D93A2B; --blue:#1D3B5E; --green:#3E6B4F;
+    --shadow:none;
+  }
+  html{color-scheme:light}
+  html[data-theme="dark"]{
+    color-scheme:dark;
+    --paper:#151514; --ink:#F1EEE6; --sub:#A9A49A; --line:#3A3833; --card:#201F1D; --red:#E4574A; --blue:#8FB0D6; --green:#8FBF9F;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:"Noto Serif SC","Songti SC","STSong",serif; font-weight:700; line-height:1.3; margin:0}
+  a{color:var(--blue)}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 22px}
+  .site-head{position:sticky; top:0; z-index:30; background:color-mix(in srgb,var(--paper) 94%,transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--line)}
+  .head-inner{display:flex; align-items:center; justify-content:space-between; gap:18px; padding:12px 0}
+  .brand{display:flex; align-items:center; gap:12px; min-width:0}
+  .seal{width:14px; height:14px; background:var(--red); flex:0 0 auto}
+  .brand h1{font-size:20px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .brand p{margin:0; font-size:12px; color:var(--sub); letter-spacing:.04em}
+  .progress-box{width:220px; flex:0 0 auto}
+  .progress-meta{display:flex; justify-content:space-between; font-size:11px; color:var(--sub); margin-bottom:4px}
+  .bar{height:5px; background:var(--line); overflow:hidden}
+  .bar i{display:block; height:100%; width:0; background:var(--red); transition:width .3s}
+  .tabs{display:flex; gap:4px; overflow-x:auto; padding-top:8px; padding-bottom:8px; scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{appearance:none; border:0; background:transparent; color:var(--sub); font:inherit; font-size:14px; padding:8px 12px; cursor:pointer; white-space:nowrap; border-bottom:2px solid transparent}
+  .tab.active{color:var(--ink); border-bottom-color:var(--red)}
+  main{padding:26px 0 60px}
+  .panel{display:none}
+  .panel.active{display:block}
+  h2.section{font-size:26px; margin-bottom:6px}
+  .lead{color:var(--sub); margin:0 0 18px; font-size:14px}
+  .overview-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:16px 0 22px}
+  .city-card{border:1px solid var(--line); border-top:3px solid var(--c,var(--ink)); padding:12px 14px}
+  .city-card .name{font-family:"Noto Serif SC","Songti SC",serif; font-size:18px; font-weight:700}
+  .city-card .meta{font-size:12px; color:var(--sub); margin-top:2px}
+  .city-card .hotel{font-size:13px; margin-top:8px}
+  .map-box{border:1px solid var(--line); padding:10px 12px 2px; margin-bottom:18px}
+  .map-box svg{display:block; width:100%; height:auto}
+  .mobile-route{display:none}
+  .mobile-route div{display:grid; grid-template-columns:52px 1fr; gap:8px; padding:7px 0; border-bottom:1px solid var(--line); font-size:13px}
+  .mobile-route div:last-child{border-bottom:0}
+  .mobile-route b{font-size:12px; color:var(--sub); font-weight:500}
+  .note-strip{border-left:3px solid var(--red); background:color-mix(in srgb,var(--red) 8%,transparent); padding:10px 14px; font-size:14px; margin:14px 0}
+  .note-strip.blue{border-left-color:var(--blue); background:color-mix(in srgb,var(--blue) 8%,transparent)}
+  .chips{display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 16px}
+  .chip-btn{appearance:none; border:1px solid var(--line); background:transparent; color:var(--sub); font:inherit; font-size:12px; padding:5px 10px; cursor:pointer}
+  .chip-btn.active{border-color:var(--ink); color:var(--ink); background:var(--card)}
+  .day{display:grid; grid-template-columns:88px 1fr; gap:18px; padding:18px 0; border-bottom:1px solid var(--line)}
+  .day:first-child{padding-top:6px}
+  .day-date strong{display:block; font-family:"Noto Serif SC","Songti SC",serif; font-size:22px; line-height:1.2}
+  .day-date span{font-size:12px; color:var(--sub)}
+  .day-head{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:8px}
+  .day-head h3{font-size:18px}
+  .city-chip{font-size:11px; border:1px solid var(--line); padding:2px 8px; color:var(--sub)}
+  .items{list-style:none; margin:0; padding:0}
+  .item{padding:3px 0}
+  .item label{display:grid; grid-template-columns:20px 54px 1fr; gap:8px; align-items:baseline; cursor:pointer}
+  .item input{margin:3px 0 0; accent-color:var(--red); width:15px; height:15px}
+  .item .t{font-size:12px; color:var(--sub); font-variant-numeric:tabular-nums}
+  .item .x{font-size:14px}
+  .item.done .x,.item.done .t{color:var(--sub); text-decoration:line-through}
+  .item.warn .x{color:var(--red)}
+  .item.warn .x::before{content:"! "; font-weight:700}
+  .hotel{font-size:12px; color:var(--sub); margin-top:10px; padding-top:6px; border-top:1px dashed var(--line)}
+  .backup{font-size:12px; color:var(--blue); margin-top:6px; padding-left:8px; border-left:2px solid var(--blue)}
+  .backup b{font-weight:500}
+  .note{width:100%; min-height:52px; margin-top:8px; padding:8px 10px; border:1px solid var(--line); background:transparent; color:var(--ink); font:inherit; font-size:13px; resize:vertical}
+  .note:focus{outline:2px solid color-mix(in srgb,var(--blue) 40%,transparent); outline-offset:1px}
+  .todo-add{display:grid; grid-template-columns:1fr 140px 110px 76px; gap:8px; margin:10px 0 18px}
+  .todo-add input,.todo-add select{width:100%; padding:9px 10px; border:1px solid var(--line); background:transparent; color:var(--ink); font:inherit; font-size:13px}
+  .btn{appearance:none; border:1px solid var(--ink); background:var(--ink); color:var(--paper); font:inherit; font-size:13px; padding:9px 14px; cursor:pointer}
+  .btn.ghost{background:transparent; color:var(--ink); border-color:var(--line)}
+  .btn:hover{opacity:.88}
+  .todo-list{list-style:none; margin:0; padding:0}
+  .todo{display:grid; grid-template-columns:1fr auto auto 26px; gap:10px; align-items:center; padding:10px 0; border-bottom:1px solid var(--line)}
+  .todo label{display:flex; align-items:baseline; gap:9px; cursor:pointer}
+  .todo input{accent-color:var(--red); width:15px; height:15px}
+  .todo .todo-text{font-size:14px}
+  .todo.done .todo-text{color:var(--sub); text-decoration:line-through}
+  .due{font-size:11px; color:var(--sub); white-space:nowrap}
+  .pri{font-size:10px; padding:1px 7px; border:1px solid var(--line); color:var(--sub); white-space:nowrap}
+  .pri.high{color:var(--red); border-color:var(--red)}
+  .pri.mid{color:var(--blue); border-color:var(--blue)}
+  .del{appearance:none; border:0; background:transparent; color:var(--sub); font-size:18px; cursor:pointer; line-height:1}
+  .shop-tools{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:12px}
+  .shop-tools input{flex:1 1 220px; padding:9px 10px; border:1px solid var(--line); background:transparent; color:var(--ink); font:inherit; font-size:13px}
+  .shop-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+  .shop{border:1px solid var(--line); padding:12px 14px}
+  .shop h4{font-size:15px; margin-bottom:2px}
+  .shop .meta{font-size:11px; color:var(--sub); margin-bottom:6px}
+  .shop p{font-size:12px; color:var(--sub); margin:0}
+  .shop .type{display:inline-block; font-size:10px; border:1px solid var(--line); padding:0 6px; margin-left:6px; vertical-align:1px}
+  .timeline{list-style:none; margin:8px 0 0; padding:0; border-left:2px solid var(--blue)}
+  .timeline li{position:relative; padding:0 0 16px 18px}
+  .timeline li::before{content:""; position:absolute; left:-6px; top:7px; width:10px; height:10px; background:var(--paper); border:2px solid var(--red); border-radius:50%}
+  .timeline .when{font-size:12px; color:var(--red); font-weight:700}
+  .timeline .what{font-size:14px}
+  .timeline .hint{font-size:12px; color:var(--sub)}
+  table{width:100%; border-collapse:collapse; font-size:13px; margin:8px 0 18px}
+  th,td{text-align:left; padding:9px 8px; border-bottom:1px solid var(--line); vertical-align:top}
+  th{font-family:"Noto Serif SC","Songti SC",serif; font-size:12px; color:var(--sub); font-weight:700; border-bottom:2px solid var(--ink)}
+  .free-note{width:100%; min-height:120px; margin-top:8px; padding:10px; border:1px solid var(--line); background:transparent; color:var(--ink); font:inherit; font-size:13px}
+  .actions{display:flex; flex-wrap:wrap; gap:8px; margin-top:26px; padding-top:16px; border-top:1px solid var(--line)}
+  .tiny{font-size:11px; color:var(--sub)}
+  .foot{padding:18px 0 40px; text-align:center; color:var(--sub); font-size:11px}
+  @media (max-width:860px){
+    .overview-grid{grid-template-columns:repeat(2,1fr)}
+    .shop-grid{grid-template-columns:repeat(2,1fr)}
+    .todo-add{grid-template-columns:1fr 1fr}
+    .todo-add .btn{grid-column:span 2}
+  }
+  @media (max-width:600px){
+    .brand h1{font-size:17px}
+    .brand p{display:none}
+    .progress-box{width:96px}
+    #savedAt{display:none}
+    .map-box svg{display:none}
+    .mobile-route{display:block}
+    .day{grid-template-columns:58px 1fr; gap:10px}
+    .day-date strong{font-size:18px}
+    .item label{grid-template-columns:18px 48px 1fr; gap:6px}
+    .overview-grid{grid-template-columns:1fr 1fr}
+    .shop-grid{grid-template-columns:1fr}
+    .todo{grid-template-columns:1fr auto 22px}
+    .todo .due{display:none}
+    .todo-add{grid-template-columns:1fr 1fr}
+  }
+  /* ---------- motion ---------- */
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  @keyframes pop{0%{transform:scale(.8)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
+  .panel.active{animation:rise .35s ease both}
+  .tab{position:relative}
+  .tab.active::after{content:"";position:absolute;left:10px;right:10px;bottom:-1px;height:2px;background:var(--red);transform-origin:left;animation:grow .25s ease}
+  .city-card{transition:transform .22s ease,border-color .22s ease}
+  .city-card:hover{transform:translateY(-3px);border-color:var(--ink)}
+  .shop{transition:transform .22s ease,border-color .22s ease}
+  .shop:hover{transform:translateY(-2px);border-color:var(--ink)}
+  .day{opacity:0;transform:translateY(12px);transition:opacity .45s ease,transform .45s ease}
+  .day.in{opacity:1;transform:none}
+  .item input{transition:transform .15s ease}
+  .item input:checked{animation:pop .25s ease}
+  .map-box .route{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.6s ease .25s forwards}
+  .map-box .flight{opacity:0;animation:fadeIn .8s ease .1s forwards}
+  .map-box .node{animation:pulse 3.2s ease-in-out infinite}
+
+  /* ---------- hero ---------- */
+  .hero{padding:16px 0 10px;border-bottom:1px solid var(--line);margin-bottom:18px}
+  .kicker{font-size:11px;letter-spacing:.22em;color:var(--red);margin-bottom:10px}
+  .hero h2.section{font-size:44px;line-height:1.15;margin-bottom:10px}
+  .hero h2 .thin{display:block;margin-top:6px;color:var(--sub);font-weight:400;font-size:.6em}
+  .hero-stats{display:flex;gap:30px;margin-top:18px;flex-wrap:wrap}
+  .hero-stats b{display:block;font-family:"Noto Serif SC","Songti SC",serif;font-size:32px;line-height:1}
+  .hero-stats span{font-size:11px;color:var(--sub);letter-spacing:.08em}
+
+  /* ---------- weather ---------- */
+  .wx{font-size:11px;color:var(--sub);border:1px solid var(--line);padding:1px 6px;white-space:nowrap}
+  .wx.live{color:var(--green);border-color:var(--green)}
+  .weather-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0 14px}
+  .weather-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .wx-card{border:1px solid var(--line);padding:10px 12px;transition:transform .22s ease,border-color .22s ease}
+  .wx-card:hover{transform:translateY(-2px)}
+  .wx-card.live{border-color:var(--green);background:color-mix(in srgb,var(--green) 7%,transparent)}
+  .wx-date{font-size:11px;color:var(--sub)}
+  .wx-city{font-size:12px;margin-top:2px}
+  .wx-icon{font-size:26px;line-height:1.2;margin:4px 0}
+  .wx-temp{font-family:"Noto Serif SC","Songti SC",serif;font-size:18px;font-weight:700}
+  .wx-rain{font-size:11px;color:var(--sub)}
+  .wx-note{font-size:11px;color:var(--red);margin-top:4px}
+
+  /* ---------- daigou ---------- */
+  .dg-summary{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 12px;border:1px solid var(--line);background:var(--card);margin:8px 0 14px;font-size:13px;flex-wrap:wrap}
+  .dg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .dg-card{border:1px solid var(--line);padding:12px 14px;transition:transform .2s ease,border-color .2s ease,background .2s ease}
+  .dg-card:hover{transform:translateY(-2px)}
+  .dg-card.picked{border-color:var(--red);background:color-mix(in srgb,var(--red) 6%,transparent)}
+  .dg-top{display:flex;gap:10px;align-items:flex-start}
+  .dg-top input{accent-color:var(--red);width:16px;height:16px;margin-top:4px;flex:0 0 auto}
+  .dg-name{font-size:15px;font-weight:500}
+  .dg-cat{font-size:10px;border:1px solid var(--line);padding:0 6px;margin-left:6px;color:var(--sub);white-space:nowrap}
+  .dg-meta{font-size:11px;color:var(--sub);margin:4px 0 0 26px}
+  .dg-fields{display:grid;grid-template-columns:120px 1fr;gap:8px;margin-top:10px}
+  .dg-fields input{width:100%;padding:7px 8px;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:12px}
+  .avoid-list{margin:0;padding-left:18px;font-size:13px;color:var(--sub);line-height:1.8}
+  .avoid-list b{color:var(--ink);font-weight:500}
+  @media(max-width:860px){.dg-grid{grid-template-columns:1fr}}
+  @media(max-width:600px){.dg-fields{grid-template-columns:1fr}}
+
+  /* ---------- prep / budget ---------- */
+  .prep-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:12px}
+  .prep-card{border:1px solid var(--line);padding:14px}
+  .count{display:flex;align-items:baseline;gap:6px;margin:6px 0}
+  .count b{font-family:"Noto Serif SC","Songti SC",serif;font-size:56px;line-height:1}
+  .count span{font-size:12px;color:var(--sub)}
+  .prep-mini{margin-top:14px;border-top:1px solid var(--line)}
+  .prep-mini div{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid var(--line);font-size:12px}
+  .prep-mini span{color:var(--sub)}
+  .prep-mini b{font-weight:500}
+  .budget-lines{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .budget-lines label{font-size:11px;color:var(--sub)}
+  .budget-lines input{width:100%;margin-top:2px;padding:6px 8px;border:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-size:12px}
+  .budget-total{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--ink);margin-top:10px;padding-top:8px;font-size:14px}
+  .budget-total b{font-family:"Noto Serif SC","Songti SC",serif;font-size:22px}
+  .packing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px 12px;font-size:13px}
+  .packing-grid label{display:flex;gap:8px;align-items:baseline;padding:4px 0;cursor:pointer}
+  .packing-grid input{accent-color:var(--red);width:14px;height:14px}
+  .tips-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .tip-card{border:1px solid var(--line);padding:10px 12px;font-size:13px;color:var(--sub)}
+  .tip-card b{display:block;font-family:"Noto Serif SC","Songti SC",serif;font-size:15px;color:var(--ink);margin-bottom:2px}
+  .src-list{font-size:12px;color:var(--sub);line-height:1.8;padding-left:18px}
+  @media(max-width:860px){.prep-grid{grid-template-columns:1fr}.packing-grid{grid-template-columns:1fr 1fr}.tips-grid{grid-template-columns:1fr}}
+
+  /* ---------- real map ---------- */
+  .map-shell{position:relative;border:1px solid var(--line);margin:10px 0 14px;background:var(--card)}
+  #realMap{height:480px;width:100%;background:var(--card)}
+  .map-legend{position:absolute;left:12px;bottom:12px;z-index:600;background:color-mix(in srgb,var(--paper) 92%,transparent);border:1px solid var(--line);padding:6px 10px;font-size:11px;display:flex;gap:12px;color:var(--sub)}
+  .map-legend i{display:inline-block;width:22px;height:0;border-top:2px solid var(--sub);vertical-align:middle;margin-right:4px}
+  .map-legend i.solid{border-color:var(--blue)}
+  .map-legend i.dash{border-top-style:dashed}
+  .leaflet-container{font-family:inherit;background:var(--card)}
+  .leaflet-popup-content{font-size:13px;line-height:1.5;margin:10px 12px}
+  .leaflet-popup-content strong{font-family:"Noto Serif SC","Songti SC",serif}
+  .map-tip{background:var(--paper);border:1px solid var(--line);box-shadow:none;color:var(--ink);font-size:11px;padding:2px 6px;border-radius:0}
+  .map-tip::before{display:none}
+  #schematicClone .map-box{margin-top:8px}
+  @media(max-width:600px){#realMap{height:360px}.map-legend{font-size:10px;gap:8px;padding:5px 8px}}
+
+  @media (max-width:860px){
+    .weather-grid{grid-template-columns:repeat(2,1fr)}
+    .hero h2.section{font-size:32px}
+    .hero-stats{gap:20px}
+    .hero-stats b{font-size:26px}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important}
+    .day{opacity:1;transform:none}
+  }
+
+  /* ---------- theme ---------- */
+  body,.site-head,.tabs,.day,.shop,.dg-card,.wx-card,.prep-card,.tip-card,.city-card,.note,.free-note,input,textarea,button,.panel{
+    transition:background-color .35s ease,color .35s ease,border-color .35s ease;
+  }
+  .theme-dock{position:fixed;right:16px;bottom:16px;z-index:1400;display:flex;gap:2px;padding:3px;background:color-mix(in srgb,var(--paper) 92%,transparent);border:1px solid var(--line);backdrop-filter:blur(10px)}
+  .theme-dock button{appearance:none;border:0;background:transparent;color:var(--sub);font:inherit;font-size:11px;padding:5px 8px;cursor:pointer;line-height:1.2}
+  .theme-dock button.active{background:var(--ink);color:var(--paper)}
+  .theme-dock .mode-icon{font-size:13px}
+  .foot{padding:18px 0 90px}
+  @media(max-width:600px){.theme-dock{right:10px;bottom:10px;padding:2px}.theme-dock button{padding:5px 7px;font-size:10px}}
+
+  @media print{
+    .site-head,.tabs,.actions,.todo-add,.shop-tools,.theme-dock{display:none!important}
+    .panel{display:block!important; page-break-before:always}
+    .panel:first-of-type{page-break-before:auto}
+    body{background:#fff; color:#000}
+    .day{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap head-inner">
+    <div class="brand">
+      <span class="seal" aria-hidden="true"></span>
+      <div>
+        <h1>日本冬季行程</h1>
+        <p>2026.12.22 — 2027.01.06 · 关西进 东京出</p>
+      </div>
+    </div>
+    <div class="progress-box">
+      <div class="progress-meta"><span id="progressText">0 / 0</span><span id="savedAt">自动保存</span></div>
+      <div class="bar"><i id="progressBar"></i></div>
+    </div>
+  </div>
+  <nav class="tabs wrap" role="tablist" aria-label="页面导航">
+    <button class="tab active" role="tab" aria-selected="true" data-tab="overview">总览</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="map">地图</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="days">每日行程</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="weather">天气</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="todos">待办</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="prep">行前</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="shops">门店备注</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="daigou">代购</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="newyear">东京跨年</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="tickets">票券与交通</button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="panel active" id="panel-overview">
+    <div class="hero">
+      <div class="kicker">2026 WINTER · JAPAN</div>
+      <h2 class="section">关西进，东京出<span class="thin">一路向东的 16 天</span></h2>
+      <p class="lead">大阪 3 晚 → 京都 3 晚 → 河口湖 2 晚 → 东京 5 晚。12.25 环球影城，12.31 东京跨年，1.5 成田回浦东。</p>
+      <div class="hero-stats">
+        <div><b>16</b><span>天</span></div>
+        <div><b>13</b><span>晚住宿</span></div>
+        <div><b>4</b><span>座城市</span></div>
+        <div><b>2</b><span>机场夜</span></div>
+      </div>
+    </div>
+
+    <div class="map-box">
+      <svg viewBox="0 0 1000 210" role="img" aria-label="路线图：武汉经广州到关西，再到大阪、京都、三岛、河口湖、东京、成田">
+        <text x="6" y="14" font-size="11" fill="var(--sub)">虚线＝航班　实线＝陆路</text>
+        <path class="flight" d="M45,170 L140,170 L255,170" fill="none" stroke="var(--sub)" stroke-width="2" stroke-dasharray="5 5" opacity=".65"/>
+        <path class="route" pathLength="1" d="M255,170 L365,110 L480,110 L585,170 L690,80 L805,110 L910,170" fill="none" stroke="var(--sub)" stroke-width="2" opacity=".65"/>
+        <circle cx="45" cy="170" r="6" fill="var(--paper)" stroke="var(--sub)" stroke-width="3"/>
+        <text x="45" y="154" text-anchor="middle" font-size="13" font-weight="700">武汉</text>
+        <text x="45" y="190" text-anchor="middle" font-size="11" fill="var(--sub)">12.22</text>
+        <circle cx="140" cy="170" r="6" fill="var(--paper)" stroke="var(--sub)" stroke-width="3"/>
+        <text x="140" y="154" text-anchor="middle" font-size="13" font-weight="700">广州</text>
+        <text x="140" y="190" text-anchor="middle" font-size="11" fill="var(--sub)">过夜</text>
+        <circle cx="255" cy="170" r="6" fill="var(--paper)" stroke="var(--sub)" stroke-width="3"/>
+        <text x="255" y="154" text-anchor="middle" font-size="13" font-weight="700">关西</text>
+        <text x="255" y="190" text-anchor="middle" font-size="11" fill="var(--sub)">12.23</text>
+        <circle class="node" cx="365" cy="110" r="8" fill="var(--paper)" stroke="var(--red)" stroke-width="4"/>
+        <text x="365" y="93" text-anchor="middle" font-size="13" font-weight="700">大阪</text>
+        <text x="365" y="76" text-anchor="middle" font-size="11" fill="var(--sub)">3 晚</text>
+        <circle class="node" cx="480" cy="110" r="8" fill="var(--paper)" stroke="var(--blue)" stroke-width="4"/>
+        <text x="480" y="93" text-anchor="middle" font-size="13" font-weight="700">京都</text>
+        <text x="480" y="76" text-anchor="middle" font-size="11" fill="var(--sub)">3 晚</text>
+        <circle cx="585" cy="170" r="6" fill="var(--paper)" stroke="var(--sub)" stroke-width="3"/>
+        <text x="585" y="154" text-anchor="middle" font-size="13" font-weight="700">三岛</text>
+        <text x="585" y="190" text-anchor="middle" font-size="11" fill="var(--sub)">换巴士</text>
+        <circle class="node" cx="690" cy="80" r="8" fill="var(--paper)" stroke="var(--green)" stroke-width="4"/>
+        <text x="690" y="63" text-anchor="middle" font-size="13" font-weight="700">河口湖</text>
+        <text x="690" y="46" text-anchor="middle" font-size="11" fill="var(--sub)">2 晚</text>
+        <circle class="node" cx="805" cy="110" r="8" fill="var(--paper)" stroke="var(--red)" stroke-width="4"/>
+        <text x="805" y="93" text-anchor="middle" font-size="13" font-weight="700">东京</text>
+        <text x="805" y="76" text-anchor="middle" font-size="11" fill="var(--sub)">5 晚</text>
+        <circle cx="910" cy="170" r="6" fill="var(--paper)" stroke="var(--sub)" stroke-width="3"/>
+        <text x="910" y="154" text-anchor="middle" font-size="13" font-weight="700">成田</text>
+        <text x="910" y="190" text-anchor="middle" font-size="11" fill="var(--sub)">1.5</text>
+      </svg>
+      <div class="mobile-route">
+        <div><b>12.22</b><span>武汉 → 广州（机场夜）</span></div>
+        <div><b>12.23</b><span>广州 → 关西 → 大阪（3 晚）</span></div>
+        <div><b>12.26</b><span>大阪 → 京都（3 晚）</span></div>
+        <div><b>12.29</b><span>京都 → 三岛 → 河口湖（2 晚）</span></div>
+        <div><b>12.31</b><span>河口湖 → 东京（5 晚）</span></div>
+        <div><b>01.05</b><span>东京 → 成田 → 浦东（机场夜）</span></div>
+        <div><b>01.06</b><span>浦东 → 武汉</span></div>
+      </div>
+    </div>
+
+    <div class="overview-grid">
+      <div class="city-card" style="--c:var(--red)"><div class="name">大阪</div><div class="meta">12.23—12.26 · 3 晚</div><div class="hotel">大阪难波南酒店<br>12.25 确认续住</div></div>
+      <div class="city-card" style="--c:var(--blue)"><div class="name">京都</div><div class="meta">12.26—12.29 · 3 晚</div><div class="hotel">京都清水五条酒店<br>含早，12.17 前可免费取消</div></div>
+      <div class="city-card" style="--c:var(--green)"><div class="name">河口湖</div><div class="meta">12.29—12.31 · 2 晚</div><div class="hotel">河口湖温泉酒店<br>含早，订的是吸烟房</div></div>
+      <div class="city-card" style="--c:var(--red)"><div class="name">东京</div><div class="meta">12.31—01.05 · 5 晚</div><div class="hotel">东京浅草酒店<br>含早，12.24 前免费取消</div></div>
+    </div>
+
+    <div class="note-strip"><strong>东京跨年：</strong>12.31 晚上浅草寺除夕钟，1.1 早上浅草寺初诣，再去明治神宫。12.31 晚餐和 1.1 晚餐都要提前订。</div>
+    <div class="note-strip blue"><strong>周游券：</strong>豪华版关西乐享周游券（含 USJ），连续 7 天窗口选 12.23—12.29；USJ 日期选 12.25。</div>
+  </section>
+
+  <section class="panel" id="panel-map">
+    <h2 class="section">在日本地图上看这条路线</h2>
+    <p class="lead">拖动、缩放查看；点标记看日期和住宿。地图聚焦日本段，广州—关西、成田—浦东的航段看下面的示意图。</p>
+    <div class="map-shell">
+      <div id="realMap"></div>
+      <div class="map-legend"><span><i class="solid"></i>陆路</span><span>点标记看住宿</span></div>
+    </div>
+    <div id="mapFallback" class="note-strip" style="display:none">地图库没有加载成功；检查网络后再打开本页，或看下面的路线示意图。</div>
+    <h3 style="font-size:18px;margin:18px 0 4px">原来的路线示意（保留）</h3>
+    <div id="schematicClone"></div>
+  </section>
+
+  <section class="panel" id="panel-days">
+    <h2 class="section">每日行程</h2>
+    <p class="lead">勾选表示已完成；每张卡片底部可以写备注，自动保存在本机浏览器。</p>
+    <div class="chips" id="dayFilters">
+      <button class="chip-btn active" data-day-filter="全部">全部</button>
+      <button class="chip-btn" data-day-filter="广州">广州</button>
+      <button class="chip-btn" data-day-filter="大阪">大阪</button>
+      <button class="chip-btn" data-day-filter="京都">京都</button>
+      <button class="chip-btn" data-day-filter="河口湖">河口湖</button>
+      <button class="chip-btn" data-day-filter="东京">东京</button>
+      <button class="chip-btn" data-day-filter="上海">上海</button>
+    </div>
+    <div id="days"></div>
+  </section>
+
+  <section class="panel" id="panel-weather">
+    <h2 class="section">每天天气</h2>
+    <p class="lead">现在显示的是 12 月底—1 月初的气候平均值，不是实时预报。天气预报通常只覆盖未来 16 天，出发前页面会自动尝试切换成最新预报。</p>
+    <div class="weather-actions">
+      <button class="btn" id="weatherBtn">刷新最新预报</button>
+      <span class="tiny" id="weatherStatus"></span>
+    </div>
+    <div class="weather-grid" id="weatherGrid"></div>
+    <div class="note-strip blue" style="margin-top:10px"><strong>穿衣：</strong>河口湖清晨可能 -5℃ 以下，富士山观景要防风；东京跨年夜间 3—6℃，浅草寺排队风大。京都早晚也接近 0℃。</div>
+  </section>
+
+  <section class="panel" id="panel-todos">
+    <h2 class="section">出发前待办</h2>
+    <p class="lead">勾选会自动保存。高优先级是会影响行程或订不到的项目。</p>
+    <form class="todo-add" id="todoForm">
+      <input id="todoText" placeholder="添加一条待办，例如：预约岚山广川鳗鱼" autocomplete="off">
+      <input id="todoDue" type="date" aria-label="截止日期">
+      <select id="todoPri" aria-label="优先级">
+        <option value="high">高</option>
+        <option value="mid" selected>中</option>
+        <option value="low">低</option>
+      </select>
+      <button class="btn" type="submit">添加</button>
+    </form>
+    <ul class="todo-list" id="todoList"></ul>
+
+    <h2 class="section" style="font-size:20px;margin-top:30px">自由笔记</h2>
+    <p class="lead">临时想法、预算调整、想去的店，都可以写在这里。</p>
+    <textarea class="free-note" id="freeNote" placeholder="例如：12.25 晚上如果太累就不去空庭温泉；1.2 想加一个 teamLab…"></textarea>
+  </section>
+
+  <section class="panel" id="panel-prep">
+    <h2 class="section">行前与预算</h2>
+    <p class="lead">把 GitHub 上几个旅行规划项目的做法压缩成一页：倒计时、预算、打包、交通卡和应急信息。</p>
+    <div class="prep-grid">
+      <div class="prep-card">
+        <div class="kicker">COUNTDOWN</div>
+        <div class="count"><b id="daysLeft">--</b><span>天</span></div>
+        <p class="tiny" id="nextTodo">下一个待办：--</p>
+        <div class="prep-mini">
+          <div><span>出发</span><b>12.22 21:30 武汉 T3</b></div>
+          <div><span>回程</span><b>1.6 12:45 武汉 T3</b></div>
+          <div><span>日本段</span><b>13 晚 · 4 城</b></div>
+        </div>
+      </div>
+      <div class="prep-card">
+        <div class="kicker">BUDGET</div>
+        <div class="budget-lines">
+          <label>大阪住宿<input id="budgetOsaka" type="number" min="0" value="1200"></label>
+          <label>每日餐饮<input id="budgetFood" type="number" min="0" value="180"></label>
+          <label>每日交通<input id="budgetTransport" type="number" min="0" value="80"></label>
+          <label>门票/体验<input id="budgetTickets" type="number" min="0" value="2000"></label>
+          <label>购物/代购<input id="budgetShopping" type="number" min="0" value="3000"></label>
+        </div>
+        <div class="budget-total"><span>预计总预算</span><b id="budgetTotal">¥0</b></div>
+        <p class="tiny">已含机票 ¥2,557、京都 ¥1,680、河口湖 ¥1,105、东京 ¥4,585；大阪按你填的算，餐饮/交通按 14 天。</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:18px;margin:22px 0 6px">打包清单</h3>
+    <div id="packingList" class="packing-grid"></div>
+
+    <h3 style="font-size:18px;margin:22px 0 6px">交通卡与实用信息</h3>
+    <div class="tips-grid">
+      <div class="tip-card"><b>IC 卡</b>Suica/ICOCA 一张就够；地铁、JR、便利店都能刷。Apple Wallet 可加 Suica，实体卡可退押金。</div>
+      <div class="tip-card"><b>现金</b>小店、神社、市场仍常用现金；建议带 ¥20,000—30,000，7-Eleven ATM 可取现。</div>
+      <div class="tip-card"><b>网络</b>eSIM 比 pocket WiFi 轻；多人共享再考虑 WiFi，带充电宝。</div>
+      <div class="tip-card"><b>行李</b>12.28 晚可把大件从京都寄到东京；新干线超大行李（长宽高 &gt;160cm）要预约。</div>
+      <div class="tip-card"><b>导航</b>Google Maps + Navitime；用站名而不是店名搜；京都巴士挤，优先京阪/地铁。</div>
+      <div class="tip-card"><b>礼仪</b>不 tipping；车上静音；不边走边吃；扶梯东京站左、大阪站右；温泉先冲洗。</div>
+      <div class="tip-card"><b>节奏</b>每次换城至少住 2 晚；换城日不排重景点；京都和东京都用同一酒店做基地。</div>
+    </div>
+
+    <h3 style="font-size:18px;margin:22px 0 6px">应急</h3>
+    <div class="note-strip"><strong>110</strong> 警察 · <strong>119</strong> 消防/救护 · <strong>Japan Visitor Hotline 050-3816-2787</strong>（24h 多语言）· 中国驻日使馆 +81-3-3403-3065</div>
+
+    <h3 style="font-size:18px;margin:22px 0 6px">参考的 GitHub 攻略</h3>
+    <ul class="src-list">
+      <li><a href="https://github.com/RonVander/Japan" target="_blank" rel="noopener">RonVander/Japan</a>：IC 卡、以城市为基地、少换宿、Google Maps 的局限。</li>
+      <li><a href="https://github.com/kingnihilism/Japan-planner" target="_blank" rel="noopener">kingnihilism/Japan-planner</a>：今天视图、预算/预订联动、打包与行李计划。</li>
+      <li><a href="https://github.com/jamesmontemagno/japan-planner" target="_blank" rel="noopener">jamesmontemagno/japan-planner</a>：路线图、预算拆分、可打印行程。</li>
+      <li><a href="https://github.com/gavtay/japanerary" target="_blank" rel="noopener">gavtay/japanerary</a>：静态旅行指南的结构参考。</li>
+    </ul>
+  </section>
+
+  <section class="panel" id="panel-shops">
+    <h2 class="section">门店与吃喝备注</h2>
+    <p class="lead">按城市筛选。12.31—1.3 很多店休息；河口湖年末营业的店不多，晚餐优先酒店或提前确认。出发前用 Google Maps 或官网再看一次营业时间。</p>
+    <div class="chips" id="shopFilters">
+      <button class="chip-btn active" data-shop-filter="全部">全部</button>
+      <button class="chip-btn" data-shop-filter="大阪">大阪</button>
+      <button class="chip-btn" data-shop-filter="京都">京都</button>
+      <button class="chip-btn" data-shop-filter="河口湖">河口湖</button>
+      <button class="chip-btn" data-shop-filter="东京">东京</button>
+    </div>
+    <div class="shop-tools"><input id="shopSearch" placeholder="搜索店名、区域或类型，例如：抹茶、鳗鱼、道顿堀"></div>
+    <div class="shop-grid" id="shopGrid"></div>
+    <h3 style="font-size:18px;margin:22px 0 4px">门店补充笔记</h3>
+    <textarea class="free-note" id="shopNote" placeholder="例如：12.27 想去中村藤吉，尽量 10:30 前到；12.31 晚餐订不到就吃酒店附近…"></textarea>
+  </section>
+
+  <section class="panel" id="panel-daigou">
+    <h2 class="section">代购转卖清单</h2>
+    <p class="lead">2026 年优先带“日本限定 + 高单价 + 低重量”。勾选列入采购，填预算上限和备注，都会自动保存在本机。</p>
+    <div class="dg-summary">
+      <strong id="dgCount">已选 0 项</strong>
+      <span id="dgTotal">预算上限合计 ¥0</span>
+    </div>
+    <div class="dg-grid" id="daigouGrid"></div>
+    <div class="note-strip"><strong>免税新规：</strong>2026.11.1 起改为“先付后退”。离境前先去海关出示护照和全部商品，再去托运；同一张小票少一件可能整单不能退。最低消费税前 ¥5,000，购买次日起 90 天内带出，在日本用掉的部分不能退。</div>
+    <h3 style="font-size:18px;margin:22px 0 6px">不建议碰</h3>
+    <ul class="avoid-list">
+      <li><b>药品、眼药水、膏药、隐形眼镜</b>：在中国转卖需要相应资质，别为了几十块差价冒风险。</li>
+      <li><b>烟酒</b>：进口许可、免税额度、假货问题都麻烦，个人自用也要注意限额。</li>
+      <li><b>肉类、乳制品、水果、部分食品</b>：海关限制多，保质期短，不适合转卖。</li>
+      <li><b>iPhone、Switch 2 日版</b>：区域锁、保修和价格优势都不稳定。</li>
+      <li><b>电饭煲、马桶盖、大包装日用品</b>：重量和电压会把利润吃光。</li>
+      <li><b>大量同款、清货架式采购</b>：品牌可能限购，海关也可能认定为商业货物。</li>
+    </ul>
+    <h3 style="font-size:18px;margin:22px 0 4px">代购备注</h3>
+    <textarea class="free-note" id="daigouNote" placeholder="例如：只带 20kg，优先表和钢笔；Montbell 只买 Plasma 1000；卡牌只买原封…"></textarea>
+  </section>
+
+  <section class="panel" id="panel-newyear">
+    <h2 class="section">东京跨年怎么过</h2>
+    <p class="lead">12.31 晚上到 1.2，按这个顺序走，避开最拥挤的时段。</p>
+    <ul class="timeline">
+      <li><div class="when">12.31 15:30</div><div class="what">浅草寺、仲见世、吾妻桥</div><div class="hint">先在白天看一眼，晚上人多到走不动。</div></li>
+      <li><div class="when">12.31 18:00</div><div class="what">晚餐</div><div class="hint">除夕很多餐厅提前关门，务必提前订；订不到就在酒店附近吃。</div></li>
+      <li><div class="when">12.31 22:30</div><div class="what">浅草寺除夕钟、初诣</div><div class="hint">人非常多，提前 1 小时到；穿厚一点，站很久。</div></li>
+      <li><div class="when">01.01 07:00</div><div class="what">浅草寺初诣</div><div class="hint">早上 9 点前到，之后人潮会明显变多。</div></li>
+      <li><div class="when">01.01 10:30</div><div class="what">明治神宫初诣</div><div class="hint">原宿站下车；参拜排队约 30—60 分钟。</div></li>
+      <li><div class="when">01.02 10:00</div><div class="what">涩谷、原宿福袋与初卖</div><div class="hint">商场陆续开门，下午人最多；Shibuya Sky 订 16:00 日落场。</div></li>
+    </ul>
+    <div class="note-strip"><strong>提醒：</strong>12.31 晚东京主要线路通宵运行，但车站和浅草寺周边非常拥挤；1.1 很多商场和餐厅休息，行程以寺社和散步为主。</div>
+    <div class="note-strip blue"><strong>保暖：</strong>东京 12.31—1.1 夜间通常 3—6℃，浅草寺排队风大，带围巾和暖宝宝。</div>
+  </section>
+
+  <section class="panel" id="panel-tickets">
+    <h2 class="section">票券与交通</h2>
+    <p class="lead">周游券是景点券，不是交通 Pass；下面把两者分开列。</p>
+
+    <h3 style="font-size:18px;margin:18px 0 4px">豪华版关西乐享周游券</h3>
+    <table>
+      <thead><tr><th>日期</th><th>用法</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>12.23</td><td>C 区：关西机场利木津巴士 → 难波</td><td>行李多更省事，约 50 分钟</td></tr>
+        <tr><td>12.23</td><td>普通项 ①：阿倍野 HARUKAS 300（可选）</td><td>晚餐后去，22:00 前；太累挪到 12.24</td></tr>
+        <tr><td>12.24</td><td>普通项 ②：梅田蓝天大厦 空中庭园</td><td>16:30 上去看日落</td></tr>
+        <tr><td>12.25</td><td>A 区：USJ 1 日券＋1 项快速通关；B 区：餐厅/爆米花；普通项 ③：空庭温泉</td><td>快速通关建议哈利波特禁忌之旅或飞天翼龙</td></tr>
+      </tbody>
+    </table>
+    <div class="note-strip">官方页面写“7 日内最多 6 种设施”，与 KKday 的 3＋2＋1＋1 分区说明略有出入。以 App 内实际可兑换数量为准；只能选 6 项时，优先保留 USJ、快速通关、机场巴士和 2 项普通设施。</div>
+    <div class="note-strip blue"><strong>三岛 → 河口湖的巴士是什么：</strong>富士急行巴士（Mishima–Kawaguchiko Line），从三岛站南口到河口湖站，约 1 小时 30 分、约 ¥2,500。它不在周游券里，也不是机场利木津巴士；12.29 接近新年，建议提前订。替代方案是 JR 到御殿场再转巴士（更慢），或打车（贵很多）。</div>
+
+    <h3 style="font-size:18px;margin:18px 0 4px">需要提前预约</h3>
+    <table>
+      <thead><tr><th>项目</th><th>时间</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>周游券绑定＋7 天启用</td><td>出发前</td><td>12.23—12.29；启用后不可改</td></tr>
+        <tr><td>USJ 入园日＋快速通关</td><td>尽快</td><td>日期选 12.25；快速通关选项目</td></tr>
+        <tr><td>三岛 → 河口湖 富士急巴士</td><td>提前 1 个月</td><td>12.29 14:05 班次</td></tr>
+        <tr><td>富士回游 河口湖 → 新宿</td><td>提前 1 个月</td><td>12.31 11:00 指定席</td></tr>
+        <tr><td>Shibuya Sky 日落场</td><td>提前 2—3 周</td><td>1.2 16:00</td></tr>
+        <tr><td>12.31、1.1 晚餐</td><td>提前 1—2 周</td><td>除夕和元旦很多店休息</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:18px;margin:18px 0 4px">交通预算（不含周游券已含部分）</h3>
+    <table>
+      <thead><tr><th>段落</th><th>参考价</th></tr></thead>
+      <tbody>
+        <tr><td>大阪市内地铁</td><td>¥600</td></tr>
+        <tr><td>大阪 → 京都（京阪）</td><td>¥420</td></tr>
+        <tr><td>京都市内巴士/地铁 2 天</td><td>¥1,000</td></tr>
+        <tr><td>伏见稻荷、宇治往返</td><td>¥1,000</td></tr>
+        <tr><td>岚山往返</td><td>¥500</td></tr>
+        <tr><td>京都 → 三岛 新干线</td><td>¥11,000</td></tr>
+        <tr><td>三岛 → 河口湖 巴士</td><td>¥2,500</td></tr>
+        <tr><td>河口湖当地交通</td><td>¥1,500</td></tr>
+        <tr><td>河口湖 → 新宿 富士回游</td><td>¥4,130</td></tr>
+        <tr><td>东京地铁 72 小时券</td><td>¥1,500</td></tr>
+        <tr><td>浅草 → 成田</td><td>¥1,370</td></tr>
+        <tr><td><strong>合计</strong></td><td><strong>约 ¥25,500（约 1,210 元）</strong></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="actions">
+    <button class="btn" id="exportBtn">导出进度 JSON</button>
+    <button class="btn ghost" id="importBtn">导入进度</button>
+    <input type="file" id="importFile" accept="application/json" hidden>
+    <button class="btn ghost" id="printBtn">打印 / 存 PDF</button>
+    <button class="btn ghost" id="resetBtn">清空进度</button>
+  </div>
+  <p class="tiny" style="margin-top:10px">进度保存在当前浏览器的 localStorage；换手机或换浏览器时，先“导出进度 JSON”，在新设备上“导入进度”。</p>
+</main>
+
+<div class="theme-dock" role="group" aria-label="背景明暗模式">
+  <button type="button" data-theme-mode="auto" aria-pressed="true" title="按当地时间自动切换：6:00—18:00 亮色，其余暗色">自动</button>
+  <button type="button" data-theme-mode="light" aria-pressed="false" title="手动锁定亮色"><span class="mode-icon">☀</span> 亮</button>
+  <button type="button" data-theme-mode="dark" aria-pressed="false" title="手动锁定暗色"><span class="mode-icon">☾</span> 暗</button>
+</div>
+
+<footer class="foot">日本冬季行程 · 2026.12.22—2027.01.06 · 数据只存在本机</footer>
+
+<script>
+const KEY = 'jp-trip-2026-v1';
+
+const DAYS = [
+  {date:'2026-12-22', md:'12.22', wd:'周二', city:'广州', title:'武汉 → 广州', hotel:'广州机场附近（未订）', items:[
+    ['18:30','到武汉天河 T3，办理托运'],
+    ['21:30','航班起飞'],
+    ['23:30','到广州白云 T2，行李直挂'],
+    ['00:10','机场附近酒店休息（待订）']
+  ]},
+  {date:'2026-12-23', md:'12.23', wd:'周三', city:'大阪', title:'广州 → 关西 → 大阪', hotel:'大阪难波南 ①', items:[
+    ['07:40','到白云 T2，安检出境'],
+    ['09:40','航班起飞'],
+    ['14:10','到关西 T1'],
+    ['15:20','利木津巴士 → 难波（周游券 C 区）'],
+    ['16:15','入住难波南酒店'],
+    ['17:30','道顿堀、戎桥、心斋桥']
+  ]},
+  {date:'2026-12-24', md:'12.24', wd:'周四', city:'大阪', title:'大阪城 → 梅田', hotel:'大阪难波南 ②', items:[
+    ['09:00','大阪城公园、天守阁'],
+    ['12:30','午餐'],
+    ['14:00','梅田商圈、中崎町'],
+    ['16:30','梅田蓝天大厦（周游券普通项）'],
+    ['19:00','梅田/中崎町晚餐'],
+    ['20:30','阿倍野 HARUKAS 300（可选）']
+  ]},
+  {date:'2026-12-25', md:'12.25', wd:'周五', city:'大阪', title:'日本环球影城', hotel:'大阪难波南 ③', items:[
+    ['出门前','到前台确认两张订单衔接、不用换房',1],
+    ['07:00','出发去 USJ'],
+    ['07:15','门口排队，争取第一批入园'],
+    ['08:00','USJ 全天（周游券 A 区）'],
+    ['12:00','B 区：餐厅预约＋饮料 / 爆米花杯'],
+    ['18:00','夜间巡游/圣诞活动'],
+    ['20:30','空庭温泉（周游券普通项，可选）']
+  ]},
+  {date:'2026-12-26', md:'12.26', wd:'周六', city:'京都', title:'大阪 → 京都', hotel:'京都清水五条 ①', items:[
+    ['11:30','退房（12:00 前）'],
+    ['11:45','难波 → 淀屋桥 → 京阪 → 清水五条'],
+    ['13:00','到酒店寄存行李'],
+    ['14:30','清水寺'],
+    ['16:00','二年坂、三年坂、八坂神社'],
+    ['17:30','祇园、花见小路'],
+    ['19:30','回酒店办理入住']
+  ]},
+  {date:'2026-12-27', md:'12.27', wd:'周日', city:'京都', title:'伏见稻荷 → 宇治', hotel:'京都清水五条 ②', items:[
+    ['07:00','清水五条 → 伏见稻荷'],
+    ['07:30','伏见稻荷大社，千本鸟居'],
+    ['09:30','伏见稻荷 → 宇治'],
+    ['10:30','平等院、宇治川、宇治桥'],
+    ['12:30','抹茶午餐'],
+    ['14:30','宇治上神社、源氏物语博物馆（可选）'],
+    ['16:30','回京都，先斗町晚餐']
+  ]},
+  {date:'2026-12-28', md:'12.28', wd:'周一', city:'京都', title:'岚山（或奈良）', hotel:'京都清水五条 ③', items:[
+    ['07:30','出发去岚山'],
+    ['08:30','竹林小径'],
+    ['09:00','天龙寺'],
+    ['10:30','渡月桥、保津川'],
+    ['11:30','午餐'],
+    ['14:30','金阁寺'],
+    ['16:30','回市区']
+  ]},
+  {date:'2026-12-29', md:'12.29', wd:'周二', city:'河口湖', title:'京都 → 河口湖', hotel:'河口湖酒店 ①', items:[
+    ['09:30','早餐、收拾'],
+    ['10:45','退房（11:00 前）'],
+    ['11:00','清水五条 → 东福寺 → 京都站'],
+    ['11:52','新干线 → 三岛'],
+    ['13:37','到三岛，换富士急巴士'],
+    ['14:05','三岛 → 河口湖（需预约）'],
+    ['15:35','到河口湖，入住'],
+    ['16:30','北岸散步']
+  ]},
+  {date:'2026-12-30', md:'12.30', wd:'周三', city:'河口湖', title:'富士山观景日', hotel:'河口湖酒店 ②', items:[
+    ['06:50','北岸看日出（可选）'],
+    ['08:30','河口湖站 → 下吉田'],
+    ['09:00','新仓山浅间公园，398 级台阶'],
+    ['11:00','回河口湖，午餐'],
+    ['13:00','忍野八海'],
+    ['15:30','大石公园、逆富士'],
+    ['17:00','温泉、晚餐']
+  ]},
+  {date:'2026-12-31', md:'12.31', wd:'周四', city:'东京', title:'河口湖 → 东京跨年', hotel:'东京浅草酒店 ①', items:[
+    ['09:30','退房（10:00 前）'],
+    ['10:00','酒店接驳 → 河口湖站'],
+    ['11:00','富士回游 → 新宿'],
+    ['12:45','到新宿，转浅草'],
+    ['13:35','到东京浅草酒店，寄存行李'],
+    ['15:30','浅草寺、仲见世、吾妻桥'],
+    ['18:00','晚餐（提前订）'],
+    ['22:30','浅草寺除夕钟、初诣']
+  ]},
+  {date:'2027-01-01', md:'01.01', wd:'周五', city:'东京', title:'东京初诣', hotel:'东京浅草酒店 ②', items:[
+    ['07:00','浅草寺初诣'],
+    ['09:00','早餐'],
+    ['10:30','明治神宫'],
+    ['12:30','表参道散步、午餐'],
+    ['15:00','涩谷十字路口、宫下公园'],
+    ['18:00','回浅草']
+  ]},
+  {date:'2027-01-02', md:'01.02', wd:'周六', city:'东京', title:'原宿、涩谷', hotel:'东京浅草酒店 ③', items:[
+    ['10:00','原宿、竹下通、表参道'],
+    ['14:00','涩谷 PARCO、宫下公园'],
+    ['16:00','Shibuya Sky 日落场（预约）'],
+    ['18:30','涩谷晚餐']
+  ]},
+  {date:'2027-01-03', md:'01.03', wd:'周日', city:'东京', title:'上野、秋叶原', hotel:'东京浅草酒店 ④', items:[
+    ['09:30','上野公园、东京国立博物馆'],
+    ['12:00','阿美横丁午餐'],
+    ['14:00','秋叶原'],
+    ['17:00','回浅草']
+  ]},
+  {date:'2027-01-04', md:'01.04', wd:'周一', city:'东京', title:'银座、东京站', hotel:'东京浅草酒店 ⑤', items:[
+    ['08:30','筑地场外市场早餐'],
+    ['10:30','银座'],
+    ['13:00','东京站丸之内、KITTE 展望'],
+    ['15:00','皇居外苑'],
+    ['17:30','六本木夜景（可选）']
+  ]},
+  {date:'2027-01-05', md:'01.05', wd:'周二', city:'上海', title:'东京 → 上海', hotel:'上海浦东机场附近（未订）', items:[
+    ['09:30','早餐、收拾'],
+    ['10:30','退房（11:00 前）'],
+    ['10:45','都营浅草 → 成田 T1'],
+    ['11:55','到成田 T1，值机'],
+    ['14:20','航班起飞'],
+    ['17:00','到浦东 T2'],
+    ['18:00','机场酒店入住']
+  ]},
+  {date:'2027-01-06', md:'01.06', wd:'周三', city:'上海', title:'上海 → 武汉', hotel:'回家', items:[
+    ['08:30','酒店接驳 → 浦东 T2'],
+    ['10:45','航班起飞'],
+    ['12:45','到武汉天河 T3']
+  ]}
+];
+
+const BACKUPS = {
+  '2026-12-23':'航班延误或入境排队过久，就取消道顿堀，只在酒店周边吃。',
+  '2026-12-24':'下雨就把大阪城换成大阪历史博物馆或梅田商场，晚上照常看夜景。',
+  '2026-12-25':'USJ 下雨优先室内项目和商店；快速通关仍按预约时间使用。',
+  '2026-12-26':'大雨就把清水寺挪到 12.28 上午，26 日先逛京都站或锦市场。',
+  '2026-12-27':'伏见稻荷下雨就只走到千本鸟居，宇治改成室内抹茶店。',
+  '2026-12-28':'岚山下雨就改奈良或京都站周边；金阁寺雨天也可以去。',
+  '2026-12-29':'新干线或巴士延误就打车去河口湖，或住三岛改次日一早进山。',
+  '2026-12-30':'看不到富士山就改音乐盒之森或温泉，31 日上午再补拍一次。',
+  '2026-12-31':'富士回游满座就改高速巴士到新宿；晚一点到东京也不影响跨年。',
+  '2027-01-01':'明治神宫人太多就改代代木公园、表参道散步。',
+  '2027-01-02':'Shibuya Sky 天气差就改涩谷 PARCO 或室内商场。',
+  '2027-01-05':'浅草线延误就改去京成上野坐 Skyliner。'
+};
+
+const DEFAULT_TODOS = [
+  {id:'t1', text:'订 12.22 广州白云机场附近酒店', due:'2026-11-15', pri:'high', done:false},
+  {id:'t2', text:'订 1.5 上海浦东机场附近酒店（确认清晨接驳）', due:'2026-11-15', pri:'high', done:false},
+  {id:'t3', text:'周游券绑定 App，启用 12.23—12.29 连续 7 天', due:'2026-12-01', pri:'high', done:false},
+  {id:'t4', text:'周游券预约 USJ 12.25＋快速通关项目', due:'2026-11-30', pri:'high', done:false},
+  {id:'t5', text:'联系大阪酒店关联两张订单，确认 12.25 不用换房', due:'2026-12-01', pri:'high', done:false},
+  {id:'t6', text:'预约 12.29 三岛 14:05 → 河口湖 富士急巴士', due:'2026-12-01', pri:'high', done:false},
+  {id:'t7', text:'预约 12.31 河口湖 11:00 → 新宿 富士回游指定席', due:'2026-12-01', pri:'high', done:false},
+  {id:'t8', text:'预约 1.2 16:00 Shibuya Sky 日落场', due:'2026-12-15', pri:'mid', done:false},
+  {id:'t9', text:'预订 12.31 东京跨年晚餐', due:'2026-12-20', pri:'mid', done:false},
+  {id:'t10', text:'预订 1.1 东京晚餐', due:'2026-12-20', pri:'mid', done:false},
+  {id:'t11', text:'预约京都餐厅（广川鳗鱼/菊乃井/瓢亭等）', due:'2026-12-10', pri:'mid', done:false},
+  {id:'t12', text:'联系河口湖酒店确认禁烟房/富士山景', due:'2026-11-30', pri:'mid', done:false},
+  {id:'t13', text:'购买旅行保险', due:'2026-12-01', pri:'mid', done:false},
+  {id:'t14', text:'Visit Japan Web 登记入境信息', due:'2026-12-15', pri:'high', done:false},
+  {id:'t15', text:'检查护照有效期（大于行程结束 6 个月）', due:'2026-11-01', pri:'high', done:false},
+  {id:'t16', text:'买 14 天日本 eSIM，确认支持热点', due:'2026-12-15', pri:'low', done:false},
+  {id:'t17', text:'预约 12.28 京都 → 东京酒店行李宅急便', due:'2026-12-27', pri:'low', done:false}
+];
+
+const SHOPS = [
+  {city:'大阪', name:'蟹道乐 道顿堀本店', type:'蟹料理', area:'道顿堀', note:'招牌蟹火锅和蟹刺身；12 月旺季务必预约，人均较高。'},
+  {city:'大阪', name:'元祖串かつ だるま 道顿堀店', type:'串炸', area:'道顿堀', note:'大阪串炸老店；酱料是公用的，不能二次蘸。'},
+  {city:'大阪', name:'本家 大たこ', type:'章鱼烧', area:'道顿堀', note:'章鱼烧老铺，适合边走边吃。'},
+  {city:'大阪', name:'千房 道顿堀', type:'大阪烧', area:'道顿堀', note:'铁板大阪烧，饭点排队。'},
+  {city:'大阪', name:'りくろーおじさん 难波总店', type:'甜品', area:'难波', note:'现烤芝士蛋糕，出炉时段排队；适合带回酒店。'},
+  {city:'大阪', name:'551 蓬莱 本店', type:'中华包点', area:'难波', note:'猪肉包和烧卖，大阪人日常伴手礼。'},
+  {city:'大阪', name:'黑门三平', type:'海鲜', area:'黑门市场', note:'现烤海鲜、刺身；先看价格再点。'},
+  {city:'大阪', name:'まぐろや 黒銀', type:'金枪鱼', area:'黑门市场', note:'金枪鱼丼和握寿司，排队人气店。'},
+  {city:'大阪', name:'空庭温泉', type:'温泉', area:'弁天町', note:'周游券可用；USJ 之后泡汤恢复体力，营业到较晚。'},
+  {city:'大阪', name:'阪急うめだ本店', type:'百货', area:'梅田', note:'地下食品层很适合买晚餐和伴手礼。'},
+  {city:'大阪', name:'新世界 串炸横纲', type:'串炸', area:'新世界', note:'通天阁一带的串炸，适合夜景后吃。'},
+  {city:'大阪', name:'阿倍野 HARUKAS 300', type:'展望台', area:'天王寺', note:'周游券可用；夜景比白天更值。'},
+
+  {city:'京都', name:'奥丹 清水', type:'汤豆腐', area:'清水寺', note:'清水寺参道上的汤豆腐老店，适合中午。'},
+  {city:'京都', name:'菊乃井 本店', type:'怀石', area:'东山', note:'米其林怀石，必须提前很久预约；预算高。'},
+  {city:'京都', name:'瓢亭 本店', type:'京都早餐', area:'南禅寺', note:'名物“瓢亭玉子”，早餐需预约。'},
+  {city:'京都', name:'茶寮 都路里 祇园本店', type:'抹茶甜品', area:'祇园', note:'抹茶芭菲，排队名店；逛完八坂神社顺路。'},
+  {city:'京都', name:'键善良房 祇园本店', type:'和果子', area:'祇园', note:'葛切（くずきり）配黑蜜，夏天冬天都合适。'},
+  {city:'京都', name:'祢ざめ家', type:'鳗鱼/稻荷寿司', area:'伏见稻荷', note:'伏见稻荷参道口，早上爬完鸟居正好吃。'},
+  {city:'京都', name:'中村藤吉 本店', type:'宇治茶', area:'宇治', note:'抹茶甜品和茶荞麦，排队；可先取号再逛平等院。'},
+  {city:'京都', name:'伊藤久右卫门 本店', type:'宇治茶', area:'宇治', note:'抹茶伴手礼比甜品店好买，适合带走。'},
+  {city:'京都', name:'岚山 よしむら', type:'荞麦面', area:'岚山', note:'渡月桥边，边吃边看河景；饭点排队。'},
+  {city:'京都', name:'广川 鳗鱼', type:'鳗鱼', area:'岚山', note:'岚山名店，必须预约；预算较高。'},
+  {city:'京都', name:'% Arabica 岚山', type:'咖啡', area:'岚山', note:'河边小店，适合拍渡月桥；人多时外带。'},
+  {city:'京都', name:'老松 岚山', type:'和果子', area:'岚山', note:'季节和果子，适合配茶。'},
+  {city:'京都', name:'锦市场', type:'市场', area:'四条', note:'小吃和腌菜；年末年初很多店休息，别排太满。'},
+  {city:'京都', name:'京都站 拉面小路', type:'拉面', area:'京都站', note:'赶新干线前吃一碗，选择多。'},
+
+  {city:'河口湖', name:'ほうとう不動 河口湖本店', type:'山梨乡土面', area:'河口湖', note:'南瓜味噌ほうとう，冬天很暖；分量大。'},
+  {city:'河口湖', name:'吉田のうどん みうら', type:'富士吉田乌冬', area:'富士吉田', note:'面很硬、口感特别，配马肉和辣酱。'},
+  {city:'河口湖', name:'白須うどん', type:'富士吉田乌冬', area:'富士吉田', note:'当地老店，适合去下吉田看忠灵塔前后吃。'},
+  {city:'河口湖', name:'大石公园', type:'湖景', area:'河口湖北岸', note:'看富士山和湖面倒影；冬天风大，注意保暖。'},
+  {city:'河口湖', name:'天上山公园缆车', type:'展望台', area:'河口湖', note:'缆车上山俯瞰湖景；天气不好就别上。'},
+  {city:'河口湖', name:'音乐盒之森美术馆', type:'博物馆', area:'河口湖', note:'欧式庭园和音乐盒，雨天备选。'},
+  {city:'河口湖', name:'忍野八海', type:'涌泉', area:'忍野', note:'名水村，游客多；早去或傍晚去。'},
+  {city:'河口湖', name:'河口湖温泉', type:'温泉', area:'河口湖', note:'酒店泡汤最省事；酒店有接驳。'},
+
+  {city:'东京', name:'浅草 今半 本店', type:'寿喜烧', area:'浅草', note:'寿喜烧老铺，必须预约；预算较高。'},
+  {city:'东京', name:'大黑家 天妇罗', type:'天妇罗', area:'浅草', note:'浅草老铺，天丼酱汁浓；饭点排队。'},
+  {city:'东京', name:'浅草 花月堂', type:'菠萝包', area:'浅草', note:'巨大菠萝包，逛仲见世顺手买。'},
+  {city:'东京', name:'舟和 本店', type:'和果子', area:'浅草', note:'芋羊羹和红豆球，伴手礼方便。'},
+  {city:'东京', name:'龟十', type:'铜锣烧', area:'浅草', note:'浅草老铺铜锣烧，卖完就收。'},
+  {city:'东京', name:'银座 久兵卫', type:'寿司', area:'银座', note:'高级寿司，必须预约；午市相对好订。'},
+  {city:'东京', name:'资生堂 Parlour 银座', type:'甜品', area:'银座', note:'经典布丁和冰淇淋，逛银座歇脚。'},
+  {city:'东京', name:'木村家 银座', type:'面包', area:'银座', note:'红豆面包老铺，伴手礼。'},
+  {city:'东京', name:'寿司大', type:'寿司', area:'丰洲/筑地', note:'排队名店，早起去；预算中等。'},
+  {city:'东京', name:'丸武 玉子烧', type:'玉子烧', area:'筑地', note:'现做玉子烧，边走边吃。'},
+  {city:'东京', name:'一兰 涩谷', type:'拉面', area:'涩谷', note:'24 小时，适合晚到；避开饭点。'},
+  {city:'东京', name:'阿美横丁', type:'市场', area:'上野', note:'零食、药妆和海鲜；新年期间部分店休息。'},
+  {city:'东京', name:'井泉 本店', type:'炸猪排', area:'上野', note:'上野老铺炸猪排，适合午餐。'},
+  {city:'东京', name:'六本木之丘 Tokyo City View', type:'夜景', area:'六本木', note:'看东京塔和夜景；1.4 晚上可选。'},
+  {city:'东京', name:'东京站 拉面街', type:'拉面', area:'东京站', note:'赶车前的快速选择，店多。'}
+];
+
+const DAIGOU = [
+  {id:'dg1', cat:'腕表', name:'Grand Seiko / Seiko JDM / Casio MR-G', gap:'价差 10%—30%', risk:'鉴定、保卡、海关申报', tip:'优先有保卡的原装；中古要查翻新。'},
+  {id:'dg2', cat:'中古表', name:'Rolex / Omega / Grand Seiko 中古', gap:'价差 5%—15%', risk:'成色、翻新、真假', tip:'东京中古店常比大阪贵 5%—9%，两地比价。'},
+  {id:'dg3', cat:'文具', name:'Pilot Custom 823 / Sailor Pro Gear / Platinum #3776', gap:'价差 20%—40%', risk:'小众、压货', tip:'限定墨水和金尖更好卖，单价低但重量轻。'},
+  {id:'dg4', cat:'相机', name:'Fujifilm X100VI（仅原价）/ Ricoh GR IIIx·IV / Sony·Canon 镜头', gap:'价差 10%—25%', risk:'2026 市场降温、保修', tip:'别按国内溢价反推进货价；只碰原价或明显低价。'},
+  {id:'dg5', cat:'户外', name:'Montbell Plasma 1000 / Storm Cruiser / Snow Peak 钛杯', gap:'价差 30%—40%', risk:'运费、关税、尺码', tip:'人肉带回最划算，别大量邮寄。'},
+  {id:'dg6', cat:'二次元', name:'Pokémon / One Piece 原封卡盒 / Gunpla / Metal Build', gap:'价差 25%—30%', risk:'限购、假货、压货', tip:'只买官方店/卡店原封，热门款别追高。'},
+  {id:'dg7', cat:'潮流', name:'Onitsuka Tiger Mexico 66 / ASICS JDM / NB 990 / CDG / Bao Bao', gap:'价差 20%—30%', risk:'尺码、季节、断码', tip:'经典色和常用码最好卖，限定色看眼光。'},
+  {id:'dg8', cat:'美妆', name:'SK-II / Shiseido / CPB / Suqqu / Anessa 限量套装', gap:'价差 15%—30%', risk:'保质期、竞争、液体托运', tip:'只做日本限定套装和限量色，不碰药妆爆款。'},
+  {id:'dg9', cat:'小家电', name:'Panasonic / Ya-Man / Refa', gap:'价差 15%—25%', risk:'100V 电压、保修、重量', tip:'确认电压和插头，保修多为日本国内。'},
+  {id:'dg10', cat:'刀具', name:'Aritsugu / Masamoto / Sakai Takayuki', gap:'价差 20%—40%', risk:'易碎、托运、保养', tip:'京都锦市场 Aritsugu 可刻字；必须托运。'}
+];
+
+const PACKING = [
+  '护照 + 签证/免签确认',
+  '机票/酒店确认单（离线截图）',
+  'Visit Japan Web QR',
+  '旅行保险',
+  'eSIM/漫游 + 充电宝',
+  '信用卡 + 现金 ¥3 万',
+  '保暖内衣/羽绒/围巾',
+  '防滑鞋',
+  '转换插头',
+  '常用药',
+  '雨具',
+  '折叠行李袋/行李秤'
+];
+
+const WEATHER = [
+  {date:'2026-12-22', city:'广州', icon:'☁', high:18, low:10, rain:20, note:'机场夜'},
+  {date:'2026-12-23', city:'大阪', icon:'☀', high:10, low:4, rain:30, note:'抵达日'},
+  {date:'2026-12-24', city:'大阪', icon:'☀', high:10, low:4, rain:30, note:''},
+  {date:'2026-12-25', city:'大阪', icon:'☁', high:9, low:3, rain:30, note:'USJ 全天户外'},
+  {date:'2026-12-26', city:'京都', icon:'☀', high:9, low:2, rain:30, note:'东山散步'},
+  {date:'2026-12-27', city:'京都', icon:'☀', high:9, low:2, rain:30, note:'伏见/宇治'},
+  {date:'2026-12-28', city:'京都', icon:'☁', high:8, low:1, rain:30, note:'岚山'},
+  {date:'2026-12-29', city:'河口湖', icon:'☀', high:7, low:-3, rain:20, note:'早晚零下'},
+  {date:'2026-12-30', city:'河口湖', icon:'☀', high:6, low:-4, rain:20, note:'观景窗口'},
+  {date:'2026-12-31', city:'东京', icon:'☀', high:10, low:3, rain:20, note:'跨年夜间 3—6℃'},
+  {date:'2027-01-01', city:'东京', icon:'☀', high:10, low:3, rain:20, note:'初诣排队冷'},
+  {date:'2027-01-02', city:'东京', icon:'☀', high:10, low:3, rain:20, note:''},
+  {date:'2027-01-03', city:'东京', icon:'☁', high:10, low:3, rain:20, note:''},
+  {date:'2027-01-04', city:'东京', icon:'☀', high:10, low:3, rain:20, note:''},
+  {date:'2027-01-05', city:'上海', icon:'☁', high:8, low:2, rain:30, note:'机场夜'},
+  {date:'2027-01-06', city:'武汉', icon:'☁', high:9, low:2, rain:30, note:'回家'}
+];
+
+const CITY_WEATHER = {
+  '广州':{lat:23.1291, lon:113.2644},
+  '大阪':{lat:34.6937, lon:135.5023},
+  '京都':{lat:35.0116, lon:135.7681},
+  '河口湖':{lat:35.5171, lon:138.7518},
+  '东京':{lat:35.6812, lon:139.7671},
+  '上海':{lat:31.2304, lon:121.4737},
+  '武汉':{lat:30.5928, lon:114.3055}
+};
+
+const weatherByDate = Object.fromEntries(WEATHER.map(w => [w.date, w]));
+let liveWeather = loadWeatherCache();
+
+function loadWeatherCache(){
+  try{
+    const raw = localStorage.getItem('jp-weather-v1');
+    if(!raw) return {};
+    const o = JSON.parse(raw);
+    if(Date.now() - o.ts < 6 * 3600 * 1000) return o.data || {};
+  }catch(e){}
+  return {};
+}
+
+function codeIcon(c){
+  if(c === 0) return '☀';
+  if(c <= 2) return '☀/☁';
+  if(c === 3) return '☁';
+  if(c === 45 || c === 48) return '🌫';
+  if(c >= 51 && c <= 57) return '🌦';
+  if(c >= 61 && c <= 67) return '🌧';
+  if(c >= 71 && c <= 77) return '🌨';
+  if(c >= 80 && c <= 82) return '🌦';
+  if(c >= 85 && c <= 86) return '🌨';
+  if(c >= 95) return '⛈';
+  return '☁';
+}
+
+let state = loadState();
+let saveTimer = null;
+
+function prepState(p){
+  p = p || {};
+  return {
+    budget: Object.assign({osaka:1200, food:180, transport:80, tickets:2000, shopping:3000}, p.budget || {}),
+    packing: p.packing || {}
+  };
+}
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if(raw){
+      const s = JSON.parse(raw);
+      return {
+        checks: s.checks || {},
+        notes: s.notes || {},
+        todos: Array.isArray(s.todos) ? s.todos : DEFAULT_TODOS.map(t=>({...t})),
+        freeNote: s.freeNote || '',
+        shopNote: s.shopNote || '',
+        daigou: {
+          picks: (s.daigou && s.daigou.picks) || {},
+          budgets: (s.daigou && s.daigou.budgets) || {},
+          notes: (s.daigou && s.daigou.notes) || {},
+          free: (s.daigou && s.daigou.free) || ''
+        },
+        prep: prepState(s.prep)
+      };
+    }
+  }catch(e){}
+  return {checks:{}, notes:{}, todos:DEFAULT_TODOS.map(t=>({...t})), freeNote:'', shopNote:'', daigou:{picks:{},budgets:{},notes:{},free:''}, prep:prepState(null)};
+}
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function save(){
+  try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  const el = document.getElementById('savedAt');
+  const now = new Date();
+  el.textContent = '已保存 ' + now.toTimeString().slice(0,5);
+}
+
+function saveDebounced(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(save, 350);
+}
+
+function renderDays(){
+  const el = document.getElementById('days');
+  el.innerHTML = DAYS.map(d => {
+    const items = d.items.map((it, i) => {
+      const id = d.date + '-' + i;
+      const checked = state.checks[id] ? ' checked' : '';
+      const warn = it[2] ? ' warn' : '';
+      const done = state.checks[id] ? ' done' : '';
+      return '<li class="item' + warn + done + '"><label><input type="checkbox" data-check="' + id + '"' + checked + '><span class="t">' + escapeHtml(it[0]) + '</span><span class="x">' + escapeHtml(it[1]) + '</span></label></li>';
+    }).join('');
+    const note = escapeHtml(state.notes[d.date] || '');
+    const w = weatherByDate[d.date];
+    const live = liveWeather[d.date];
+    const wx = w ? '<span class="wx' + (live ? ' live' : '') + '" title="' + (live ? '最新预报' : '气候平均值') + '">' + (live ? live.icon : w.icon) + ' ' + (live ? live.high : w.high) + '°/' + (live ? live.low : w.low) + '°</span>' : '';
+    const backup = BACKUPS[d.date] ? '<div class="backup"><b>B 方案</b> · ' + escapeHtml(BACKUPS[d.date]) + '</div>' : '';
+    return '<article class="day" data-city="' + d.city + '">' +
+      '<div class="day-date"><strong>' + d.md + '</strong><span>' + d.wd + '</span></div>' +
+      '<div class="day-body">' +
+        '<div class="day-head"><h3>' + escapeHtml(d.title) + '</h3><span class="city-chip">' + d.city + '</span>' + wx + '</div>' +
+        '<ul class="items">' + items + '</ul>' +
+        '<div class="hotel">宿 · ' + escapeHtml(d.hotel) + '</div>' +
+        backup +
+        '<textarea class="note" data-note="' + d.date + '" placeholder="这一天的备注、预约号、临时调整…">' + note + '</textarea>' +
+      '</div></article>';
+  }).join('');
+}
+
+function renderTodos(){
+  const el = document.getElementById('todoList');
+  const sorted = state.todos.slice().sort((a,b) => (a.done?1:0) - (b.done?1:0));
+  el.innerHTML = sorted.map(t => {
+    const label = t.pri === 'high' ? '高' : (t.pri === 'mid' ? '中' : '低');
+    return '<li class="todo' + (t.done ? ' done' : '') + '">' +
+      '<label><input type="checkbox" data-todo="' + t.id + '"' + (t.done ? ' checked' : '') + '><span class="todo-text">' + escapeHtml(t.text) + '</span></label>' +
+      '<span class="due">' + escapeHtml(t.due || '') + '</span>' +
+      '<span class="pri ' + t.pri + '">' + label + '</span>' +
+      '<button class="del" data-del="' + t.id + '" title="删除">×</button>' +
+    '</li>';
+  }).join('');
+}
+
+function renderShops(){
+  const active = document.querySelector('[data-shop-filter].active');
+  const city = active ? active.dataset.shopFilter : '全部';
+  const q = document.getElementById('shopSearch').value.trim().toLowerCase();
+  const list = SHOPS.filter(s => (city === '全部' || s.city === city) && (!q || (s.name + s.area + s.type + s.note).toLowerCase().includes(q)));
+  document.getElementById('shopGrid').innerHTML = list.map(s =>
+    '<article class="shop"><h4>' + escapeHtml(s.name) + '<span class="type">' + escapeHtml(s.type) + '</span></h4>' +
+    '<div class="meta">' + s.city + ' · ' + escapeHtml(s.area) + '</div><p>' + escapeHtml(s.note) + '</p></article>'
+  ).join('') || '<p class="tiny">没有匹配的店，换个关键词试试。</p>';
+}
+
+function renderDaigou(){
+  const grid = document.getElementById('daigouGrid');
+  if(!grid) return;
+  grid.innerHTML = DAIGOU.map(d => {
+    const picked = !!state.daigou.picks[d.id];
+    const budget = escapeHtml(state.daigou.budgets[d.id] || '');
+    const note = escapeHtml(state.daigou.notes[d.id] || '');
+    return '<article class="dg-card' + (picked ? ' picked' : '') + '">' +
+      '<div class="dg-top"><input type="checkbox" data-dg-pick="' + d.id + '"' + (picked ? ' checked' : '') + '>' +
+        '<div><div class="dg-name">' + escapeHtml(d.name) + '<span class="dg-cat">' + d.cat + '</span></div>' +
+        '<div class="dg-meta">' + d.gap + ' · ' + d.risk + '</div></div></div>' +
+      '<div class="dg-meta">' + d.tip + '</div>' +
+      '<div class="dg-fields"><input type="number" min="0" placeholder="预算上限 ¥" data-dg-budget="' + d.id + '" value="' + budget + '">' +
+      '<input placeholder="备注：数量/型号/店铺" data-dg-note="' + d.id + '" value="' + note + '"></div>' +
+    '</article>';
+  }).join('');
+  updateDaigouSummary();
+}
+
+function updateDaigouSummary(){
+  const ids = Object.keys(state.daigou.picks).filter(id => state.daigou.picks[id]);
+  const total = ids.reduce((sum, id) => sum + (Number(state.daigou.budgets[id]) || 0), 0);
+  const c = document.getElementById('dgCount');
+  const t = document.getElementById('dgTotal');
+  if(c) c.textContent = '已选 ' + ids.length + ' 项';
+  if(t) t.textContent = '预算上限合计 ¥' + total.toLocaleString('zh-CN');
+}
+
+function updateBudget(){
+  const b = state.prep.budget;
+  const total = 9927 + Number(b.osaka || 0) + ((Number(b.food || 0) + Number(b.transport || 0)) * 14) + Number(b.tickets || 0) + Number(b.shopping || 0);
+  const el = document.getElementById('budgetTotal');
+  if(el) el.textContent = '¥' + total.toLocaleString('zh-CN');
+}
+
+function updateNextTodo(){
+  const el = document.getElementById('nextTodo');
+  if(!el) return;
+  const next = state.todos.filter(t => !t.done && t.due).sort((a,b) => a.due.localeCompare(b.due))[0];
+  el.textContent = next ? ('下一个待办：' + next.text + '（' + next.due + '）') : '待办都完成了，检查护照和行李。';
+}
+
+function renderPrep(){
+  const ids = {osaka:'budgetOsaka', food:'budgetFood', transport:'budgetTransport', tickets:'budgetTickets', shopping:'budgetShopping'};
+  Object.keys(ids).forEach(k => {
+    const el = document.getElementById(ids[k]);
+    if(el) el.value = state.prep.budget[k];
+  });
+  updateBudget();
+  const today = new Date(); today.setHours(0,0,0,0);
+  const start = new Date('2026-12-22T00:00:00');
+  const days = Math.max(0, Math.ceil((start - today) / 86400000));
+  const dl = document.getElementById('daysLeft');
+  if(dl) dl.textContent = days;
+  updateNextTodo();
+  const pack = document.getElementById('packingList');
+  if(pack){
+    pack.innerHTML = PACKING.map((p, i) => {
+      const id = 'p' + i;
+      const checked = state.prep.packing[id] ? ' checked' : '';
+      return '<label><input type="checkbox" data-pack="' + id + '"' + checked + '><span>' + escapeHtml(p) + '</span></label>';
+    }).join('');
+  }
+}
+
+function renderWeather(){
+  const grid = document.getElementById('weatherGrid');
+  if(!grid) return;
+  grid.innerHTML = WEATHER.map(w => {
+    const live = liveWeather[w.date];
+    const d = DAYS.find(x => x.date === w.date);
+    const icon = live ? live.icon : w.icon;
+    const high = live ? live.high : w.high;
+    const low = live ? live.low : w.low;
+    const rain = live ? live.rain : w.rain;
+    return '<article class="wx-card' + (live ? ' live' : '') + '">' +
+      '<div class="wx-date">' + (d ? d.md + ' ' + d.wd : w.date) + '</div>' +
+      '<div class="wx-city">' + w.city + (live ? ' · 预报' : ' · 平均') + '</div>' +
+      '<div class="wx-icon">' + icon + '</div>' +
+      '<div class="wx-temp">' + high + '° / ' + low + '°</div>' +
+      '<div class="wx-rain">降水 ' + rain + '%</div>' +
+      (w.note ? '<div class="wx-note">' + w.note + '</div>' : '') +
+    '</article>';
+  }).join('');
+}
+
+function updateWeatherStatus(){
+  const el = document.getElementById('weatherStatus');
+  if(!el) return;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const first = new Date(DAYS[0].date + 'T00:00:00');
+  const diff = Math.ceil((first - today) / 86400000);
+  const liveCount = Object.keys(liveWeather).length;
+  if(liveCount) el.textContent = '已加载最新预报（绿色卡片）。';
+  else if(diff > 16) el.textContent = '距出发 ' + diff + ' 天，天气预报尚未开放；当前显示气候平均值。';
+  else el.textContent = '已进入 16 天预报窗口，可以点“刷新最新预报”。';
+}
+
+function initWeather(){
+  const today = new Date(); today.setHours(0,0,0,0);
+  const first = new Date(DAYS[0].date + 'T00:00:00');
+  const diff = Math.ceil((first - today) / 86400000);
+  if(diff <= 16 && Object.keys(liveWeather).length === 0) fetchForecast();
+  else updateWeatherStatus();
+}
+
+async function fetchForecast(){
+  const status = document.getElementById('weatherStatus');
+  const today = new Date(); today.setHours(0,0,0,0);
+  const end = new Date(today); end.setDate(end.getDate() + 15);
+  const inRange = DAYS.map(d => d.date).filter(ds => {
+    const dt = new Date(ds + 'T00:00:00');
+    return dt >= today && dt <= end;
+  });
+  if(!inRange.length){
+    updateWeatherStatus();
+    return;
+  }
+  status.textContent = '正在获取最新预报…';
+  const byCity = {};
+  inRange.forEach(ds => {
+    const w = weatherByDate[ds];
+    if(!w) return;
+    (byCity[w.city] = byCity[w.city] || []).push(ds);
+  });
+  try{
+    for(const [city, dates] of Object.entries(byCity)){
+      const c = CITY_WEATHER[city];
+      if(!c) continue;
+      const min = dates[0], max = dates[dates.length - 1];
+      const url = 'https://api.open-meteo.com/v1/forecast?latitude=' + c.lat + '&longitude=' + c.lon +
+        '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max' +
+        '&timezone=Asia%2FTokyo&start_date=' + min + '&end_date=' + max;
+      const r = await fetch(url);
+      const j = await r.json();
+      if(!j.daily || !j.daily.time) continue;
+      j.daily.time.forEach((t, i) => {
+        liveWeather[t] = {
+          icon: codeIcon(j.daily.weather_code[i]),
+          high: Math.round(j.daily.temperature_2m_max[i]),
+          low: Math.round(j.daily.temperature_2m_min[i]),
+          rain: j.daily.precipitation_probability_max[i] == null ? '—' : j.daily.precipitation_probability_max[i]
+        };
+      });
+    }
+    localStorage.setItem('jp-weather-v1', JSON.stringify({ts:Date.now(), data:liveWeather}));
+    renderDays();
+    animateDays();
+    renderWeather();
+    updateWeatherStatus();
+    if(Object.keys(liveWeather).length) status.textContent = '已更新最新预报（绿色标记为预报值）。';
+  }catch(e){
+    status.textContent = '天气服务暂时不可用，继续显示气候平均值。';
+  }
+}
+
+function animateDays(){
+  const cards = document.querySelectorAll('#days .day');
+  cards.forEach((d, i) => {
+    d.classList.remove('in');
+    requestAnimationFrame(() => {
+      setTimeout(() => d.classList.add('in'), Math.min(i * 35, 350));
+    });
+  });
+}
+
+let realMap = null;
+let mapLayers = null;
+let landLine = null;
+let stopMarkers = [];
+const JAPAN_BOUNDS = [[34.25, 135.0], [36.05, 140.55]];
+const MAP_STOPS = [
+  {name:'武汉', date:'12.22 出发 / 1.6 返回', lat:30.5928, lon:114.3055, color:'#5C5A56', r:5, main:false, popup:'12.22 21:30 航班起飞；1.6 12:45 回到武汉 T3。'},
+  {name:'广州', date:'12.22 机场夜', lat:23.1291, lon:113.2644, color:'#5C5A56', r:5, main:false, popup:'12.22 23:30 到白云 T2，机场附近过夜；12.23 09:40 转机。'},
+  {name:'关西机场', date:'12.23 14:10', lat:34.4347, lon:135.2440, color:'#5C5A56', r:5, main:false, popup:'12.23 14:10 抵达关西 T1；利木津巴士到难波。'},
+  {name:'大阪', date:'3 晚 · 12.23—26', lat:34.6937, lon:135.5023, color:'#D93A2B', r:7, main:true, dir:'bottom', popup:'大阪难波南，3 晚。12.25 环球影城。'},
+  {name:'京都', date:'3 晚 · 12.26—29', lat:35.0116, lon:135.7681, color:'#1D3B5E', r:7, main:true, dir:'top', popup:'京都清水五条，3 晚。12.26 大阪退房后移动。'},
+  {name:'三岛', date:'12.29 换巴士', lat:35.1185, lon:138.9186, color:'#5C5A56', r:5, main:false, popup:'12.29 新干线到三岛，换富士急巴士去河口湖。'},
+  {name:'河口湖', date:'2 晚 · 12.29—31', lat:35.5171, lon:138.7518, color:'#3E6B4F', r:7, main:true, dir:'left', popup:'河口湖酒店，2 晚。12.30 富士山观景。'},
+  {name:'东京', date:'5 晚 · 12.31—1.5', lat:35.6812, lon:139.7671, color:'#D93A2B', r:7, main:true, dir:'right', popup:'东京浅草酒店，5 晚。12.31 东京跨年。'},
+  {name:'成田机场', date:'1.5 14:20', lat:35.7720, lon:140.3929, color:'#5C5A56', r:5, main:false, popup:'1.5 14:20 航班起飞，17:00 到浦东 T2。'},
+  {name:'上海浦东', date:'1.5 机场夜', lat:31.1443, lon:121.8083, color:'#5C5A56', r:5, main:false, popup:'1.5 17:00 到浦东 T2，机场附近过夜；1.6 10:45 飞武汉。'}
+];
+
+function initSchematicClone(){
+  const src = document.querySelector('#panel-overview .map-box');
+  const dst = document.getElementById('schematicClone');
+  if(src && dst && !dst.hasChildNodes()) dst.appendChild(src.cloneNode(true));
+}
+
+function initRealMap(){
+  if(realMap){ realMap.invalidateSize(); return; }
+  if(typeof L === 'undefined'){
+    document.getElementById('mapFallback').style.display = 'block';
+    return;
+  }
+  document.getElementById('mapFallback').style.display = 'none';
+  realMap = L.map('realMap', {scrollWheelZoom:false}).setView([35, 137], 6);
+  const dark = document.documentElement.dataset.theme === 'dark';
+
+  const lightBase = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    attribution:'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+    maxZoom:16
+  });
+  const lightLabels = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+    attribution:'Tiles &copy; Esri',
+    maxZoom:16
+  });
+  const darkBase = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    attribution:'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+    maxZoom:16
+  });
+  const darkLabels = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+    attribution:'Tiles &copy; Esri',
+    maxZoom:16
+  });
+  mapLayers = {lightBase, lightLabels, darkBase, darkLabels};
+  applyMapTheme(document.documentElement.dataset.theme || 'light');
+
+  landLine = L.polyline([
+    [34.4347,135.2440],[34.6937,135.5023],[35.0116,135.7681],[35.1185,138.9186],
+    [35.5171,138.7518],[35.6812,139.7671],[35.7720,140.3929]
+  ], {color:mapColor('#1D3B5E', dark), weight:3, opacity:.85}).addTo(realMap);
+
+  MAP_STOPS.forEach(s => {
+    const m = L.circleMarker([s.lat, s.lon], {
+      radius:s.r, color:mapColor(s.color, dark), weight:3, fillColor:'#F7F5F0', fillOpacity:1
+    }).addTo(realMap);
+    m._baseColor = s.color;
+    stopMarkers.push(m);
+    m.bindPopup('<strong>' + s.name + '</strong><br>' + s.date + '<br>' + s.popup);
+    if(s.main){
+      m.bindTooltip(s.name + '<br>' + s.date, {permanent:true, direction:s.dir || 'top', className:'map-tip', offset:[0,-6]});
+    }
+  });
+
+  realMap.fitBounds(JAPAN_BOUNDS, {padding:[26,26]});
+}
+
+function applyMapTheme(theme){
+  if(!realMap || !mapLayers) return;
+  const dark = theme === 'dark';
+  const add = dark ? [mapLayers.darkBase, mapLayers.darkLabels] : [mapLayers.lightBase, mapLayers.lightLabels];
+  const remove = dark ? [mapLayers.lightBase, mapLayers.lightLabels] : [mapLayers.darkBase, mapLayers.darkLabels];
+  remove.forEach(l => { if(realMap.hasLayer(l)) realMap.removeLayer(l); });
+  add.forEach(l => { if(!realMap.hasLayer(l)) l.addTo(realMap); });
+  if(landLine) landLine.setStyle({color:mapColor('#1D3B5E', dark)});
+  stopMarkers.forEach(m => m.setStyle({color:mapColor(m._baseColor, dark)}));
+}
+
+function mapColor(hex, dark){
+  if(!dark) return hex;
+  return {
+    '#1D3B5E':'#9FC3E8',
+    '#3E6B4F':'#9FD3B0',
+    '#D93A2B':'#F07A6E',
+    '#5C5A56':'#B9B4A8'
+  }[hex] || hex;
+}
+
+function updateProgress(){
+  let total = 0, done = 0;
+  DAYS.forEach(d => {
+    d.items.forEach((_, i) => {
+      total++;
+      if(state.checks[d.date + '-' + i]) done++;
+    });
+  });
+  total += state.todos.length;
+  done += state.todos.filter(t => t.done).length;
+  document.getElementById('progressText').textContent = done + ' / ' + total + ' 完成';
+  document.getElementById('progressBar').style.width = total ? (done / total * 100) + '%' : '0%';
+  if(document.getElementById('nextTodo')) updateNextTodo();
+}
+
+function renderAll(){
+  renderDays();
+  animateDays();
+  renderTodos();
+  renderShops();
+  renderDaigou();
+  renderPrep();
+  renderWeather();
+  updateWeatherStatus();
+  document.getElementById('freeNote').value = state.freeNote || '';
+  document.getElementById('shopNote').value = state.shopNote || '';
+  document.getElementById('daigouNote').value = (state.daigou && state.daigou.free) || '';
+  updateProgress();
+}
+
+document.getElementById('days').addEventListener('change', e => {
+  const cb = e.target.closest('input[data-check]');
+  if(!cb) return;
+  if(cb.checked) state.checks[cb.dataset.check] = true;
+  else delete state.checks[cb.dataset.check];
+  cb.closest('.item').classList.toggle('done', cb.checked);
+  save();
+  updateProgress();
+});
+
+document.getElementById('days').addEventListener('input', e => {
+  const ta = e.target.closest('textarea[data-note]');
+  if(!ta) return;
+  state.notes[ta.dataset.note] = ta.value;
+  saveDebounced();
+});
+
+document.getElementById('todoForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const text = document.getElementById('todoText').value.trim();
+  if(!text) return;
+  state.todos.push({
+    id: 'c' + Date.now(),
+    text,
+    due: document.getElementById('todoDue').value,
+    pri: document.getElementById('todoPri').value,
+    done: false
+  });
+  document.getElementById('todoText').value = '';
+  document.getElementById('todoDue').value = '';
+  save();
+  renderTodos();
+  updateProgress();
+});
+
+document.getElementById('todoList').addEventListener('change', e => {
+  const cb = e.target.closest('input[data-todo]');
+  if(!cb) return;
+  const t = state.todos.find(x => x.id === cb.dataset.todo);
+  if(!t) return;
+  t.done = cb.checked;
+  save();
+  renderTodos();
+  updateProgress();
+});
+
+document.getElementById('todoList').addEventListener('click', e => {
+  const btn = e.target.closest('button[data-del]');
+  if(!btn) return;
+  if(!confirm('删除这条待办？')) return;
+  state.todos = state.todos.filter(x => x.id !== btn.dataset.del);
+  save();
+  renderTodos();
+  updateProgress();
+});
+
+document.getElementById('freeNote').addEventListener('input', e => {
+  state.freeNote = e.target.value;
+  saveDebounced();
+});
+
+document.getElementById('shopNote').addEventListener('input', e => {
+  state.shopNote = e.target.value;
+  saveDebounced();
+});
+
+document.getElementById('daigouGrid').addEventListener('change', e => {
+  const cb = e.target.closest('input[data-dg-pick]');
+  if(!cb) return;
+  const id = cb.dataset.dgPick;
+  state.daigou.picks[id] = cb.checked;
+  const card = cb.closest('.dg-card');
+  if(card) card.classList.toggle('picked', cb.checked);
+  save();
+  updateDaigouSummary();
+});
+
+document.getElementById('daigouGrid').addEventListener('input', e => {
+  if(e.target.matches('input[data-dg-budget]')){
+    state.daigou.budgets[e.target.dataset.dgBudget] = e.target.value;
+    saveDebounced();
+    updateDaigouSummary();
+  }
+  if(e.target.matches('input[data-dg-note]')){
+    state.daigou.notes[e.target.dataset.dgNote] = e.target.value;
+    saveDebounced();
+  }
+});
+
+document.getElementById('daigouNote').addEventListener('input', e => {
+  state.daigou.free = e.target.value;
+  saveDebounced();
+});
+
+const BUDGET_INPUTS = {budgetOsaka:'osaka', budgetFood:'food', budgetTransport:'transport', budgetTickets:'tickets', budgetShopping:'shopping'};
+Object.keys(BUDGET_INPUTS).forEach(id => {
+  const el = document.getElementById(id);
+  if(el) el.addEventListener('input', () => {
+    state.prep.budget[BUDGET_INPUTS[id]] = el.value;
+    saveDebounced();
+    updateBudget();
+  });
+});
+
+document.getElementById('packingList').addEventListener('change', e => {
+  const cb = e.target.closest('input[data-pack]');
+  if(!cb) return;
+  state.prep.packing[cb.dataset.pack] = cb.checked;
+  save();
+});
+
+document.querySelectorAll('[data-tab]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-tab]').forEach(b => {
+      b.classList.toggle('active', b === btn);
+      b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+    });
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    if(btn.dataset.tab === 'days') animateDays();
+    if(btn.dataset.tab === 'map'){
+      initRealMap();
+      setTimeout(() => { if(realMap) realMap.invalidateSize(); }, 80);
+    }
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+});
+
+document.getElementById('dayFilters').addEventListener('click', e => {
+  const btn = e.target.closest('[data-day-filter]');
+  if(!btn) return;
+  document.querySelectorAll('[data-day-filter]').forEach(b => b.classList.toggle('active', b === btn));
+  const city = btn.dataset.dayFilter;
+  document.querySelectorAll('#days .day').forEach(d => {
+    d.style.display = (city === '全部' || d.dataset.city === city) ? '' : 'none';
+  });
+});
+
+document.getElementById('shopFilters').addEventListener('click', e => {
+  const btn = e.target.closest('[data-shop-filter]');
+  if(!btn) return;
+  document.querySelectorAll('[data-shop-filter]').forEach(b => b.classList.toggle('active', b === btn));
+  renderShops();
+});
+
+document.getElementById('shopSearch').addEventListener('input', renderShops);
+document.getElementById('weatherBtn').addEventListener('click', fetchForecast);
+
+document.getElementById('exportBtn').addEventListener('click', () => {
+  const data = {version:1, exportedAt:new Date().toISOString(), state};
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '日本行程进度-2026-12-22.json';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+});
+
+document.getElementById('importBtn').addEventListener('click', () => {
+  document.getElementById('importFile').click();
+});
+
+document.getElementById('importFile').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try{
+      const obj = JSON.parse(reader.result);
+      const s = obj.state || obj;
+      state = {
+        checks: s.checks || {},
+        notes: s.notes || {},
+        todos: Array.isArray(s.todos) ? s.todos : DEFAULT_TODOS.map(t=>({...t})),
+        freeNote: s.freeNote || '',
+        shopNote: s.shopNote || '',
+        daigou: {
+          picks: (s.daigou && s.daigou.picks) || {},
+          budgets: (s.daigou && s.daigou.budgets) || {},
+          notes: (s.daigou && s.daigou.notes) || {},
+          free: (s.daigou && s.daigou.free) || ''
+        },
+        prep: prepState(s.prep)
+      };
+      save();
+      renderAll();
+      alert('导入成功，已恢复勾选、备注和待办。');
+    }catch(err){
+      alert('导入失败：文件不是有效的 JSON。');
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+});
+
+document.getElementById('printBtn').addEventListener('click', () => window.print());
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  if(!confirm('清空所有勾选、备注和待办？此操作不可恢复。')) return;
+  localStorage.removeItem(KEY);
+  location.reload();
+});
+
+const THEME_KEY = 'jp-theme-v1';
+let themeMode = (() => {
+  try{ return localStorage.getItem(THEME_KEY) || 'auto'; }catch(e){ return 'auto'; }
+})();
+
+function isDaytime(){
+  const h = new Date().getHours();
+  return h >= 6 && h < 18;
+}
+
+function applyTheme(){
+  const theme = themeMode === 'auto' ? (isDaytime() ? 'light' : 'dark') : themeMode;
+  document.documentElement.dataset.theme = theme;
+  const meta = document.getElementById('themeColor');
+  if(meta) meta.setAttribute('content', theme === 'dark' ? '#151514' : '#F7F5F0');
+  applyMapTheme(theme);
+  document.querySelectorAll('[data-theme-mode]').forEach(btn => {
+    const active = btn.dataset.themeMode === themeMode;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    if(btn.dataset.themeMode === 'auto'){
+      btn.title = '按当地时间自动切换：当前' + (theme === 'light' ? '亮色' : '暗色') + '（6:00—18:00 亮色）';
+    }
+  });
+}
+
+function setThemeMode(mode){
+  themeMode = mode;
+  try{ localStorage.setItem(THEME_KEY, mode); }catch(e){}
+  applyTheme();
+}
+
+document.querySelectorAll('[data-theme-mode]').forEach(btn => {
+  btn.addEventListener('click', () => setThemeMode(btn.dataset.themeMode));
+});
+setInterval(() => { if(themeMode === 'auto') applyTheme(); }, 60000);
+applyTheme();
+
+renderAll();
+initWeather();
+initSchematicClone();
+</script>
+</body>
+</html>
