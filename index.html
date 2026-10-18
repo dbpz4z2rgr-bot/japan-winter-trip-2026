@@ -303,30 +303,6 @@
     .day{opacity:1;transform:none}
   }
 
-  /* ---------- itinerary animation (legacy) ---------- */
-  .anim-wrap{display:grid;grid-template-columns:1.55fr 1fr;gap:14px;align-items:stretch}
-  .anim-stage{position:relative;border:1px solid var(--line);background:var(--card);padding:8px;min-height:300px}
-  .anim-stage svg{display:block;width:100%;height:auto}
-  .anim-date{position:absolute;left:14px;top:12px;font-family:"Noto Serif SC","Songti SC",serif;font-size:24px;font-weight:700;line-height:1}
-  .anim-stage-label{position:absolute;right:14px;top:14px;font-size:12px;color:var(--red);font-weight:500}
-  .anim-node text{font-size:13px;font-weight:500;fill:var(--ink);font-family:"Noto Sans SC","PingFang SC",sans-serif}
-  .anim-node .anim-sub{font-size:11px;font-weight:400;fill:var(--sub)}
-  .anim-node circle{fill:var(--paper);stroke:var(--sub);stroke-width:3}
-  .anim-node.visited circle{stroke:var(--red)}
-  .anim-node.active circle{stroke:var(--red);stroke-width:5}
-  .anim-pulse{animation:pulse 1.6s ease-in-out infinite}
-  .anim-side{border:1px solid var(--line);padding:14px;background:var(--card)}
-  .anim-kicker{font-size:11px;letter-spacing:.16em;color:var(--red)}
-  .anim-side h3{font-size:20px;margin:5px 0}
-  .anim-city{font-size:12px;color:var(--sub)}
-  .anim-items{list-style:none;margin:10px 0 0;padding:0;font-size:13px;color:var(--sub);line-height:1.7}
-  .anim-items li::before{content:"·";color:var(--red);margin-right:6px}
-  .anim-hotel{margin-top:10px;padding-top:8px;border-top:1px dashed var(--line);font-size:12px;color:var(--sub)}
-  .anim-controls{display:flex;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap}
-  .anim-progress{flex:1;min-width:120px;height:4px;background:var(--line);overflow:hidden}
-  .anim-progress i{display:block;height:100%;width:0;background:var(--red);transition:width .08s linear}
-  @media(max-width:860px){.anim-wrap{grid-template-columns:1fr}.anim-stage{min-height:220px}}
-
   /* ---------- theme ---------- */
   body,.site-head,.tabs,.day,.shop,.dg-card,.wx-card,.prep-card,.tip-card,.city-card,.note,.free-note,input,textarea,button,.panel{
     transition:background-color .35s ease,color .35s ease,border-color .35s ease;
@@ -370,6 +346,7 @@
     <button class="tab" role="tab" aria-selected="false" data-tab="weather">🌤️ 天气</button>
     <button class="tab" role="tab" aria-selected="false" data-tab="todos">✅ 待办</button>
     <button class="tab" role="tab" aria-selected="false" data-tab="prep">🎒 行前</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="visa">🛂 准备</button>
     <button class="tab" role="tab" aria-selected="false" data-tab="shops">🍜 门店备注</button>
     <button class="tab" role="tab" aria-selected="false" data-tab="xhs">📕 小红书</button>
     <button class="tab" role="tab" aria-selected="false" data-tab="daigou">🛍️ 代购</button>
@@ -453,9 +430,10 @@
     </div>
 
     <div class="theo-oath">“不赶场，不错过；吃好一点，走慢一点，把每一天过成值得收藏的一页。”<span>— THEO 的 2026 冬旅宣言 · ✍️</span></div>
-    <div class="note-strip"><strong>🎍 东京跨年：</strong>12.31 晚上浅草寺除夕钟，或都厅 TOKYO NIGHTTIME PROJECT / 王子狐狸巡游（二选一）。1.1 早上浅草寺初诣，再去明治神宫。12.31 晚餐和 1.1 晚餐都要提前订。</div>
-    <div class="note-strip blue"><strong>🎫 周游券：</strong>豪华版关西乐享周游券（含 USJ），连续 7 天窗口选 12.23—12.29；USJ 日期选 12.25。</div>
-    <div class="note-strip"><strong>⏳ 关键截止：</strong>12.15 京都扣款 · 12.17 京都免费取消 · 12.22 东京扣款 · 12.24 东京免费取消 · 12.26 河口湖扣款 · 12.28 河口湖免费取消</div>
+    <div class="note-strip"><strong>🚨 三个最大风险：</strong>① 日本签证还没递出去——普通护照必须办，离出发只剩两个月 ② 12.22 广州夜、1.5 上海夜两晚酒店都还没订 ③ 12.29 三岛巴士、12.31 富士回遊都是全席指定，<b>11/29 与 11/30 上午 10 点（日本时间）</b>开售，错过就只能改行程。</div>
+    <div class="note-strip blue"><strong>🎍 东京跨年：</strong>12.31 14:08 富士回遊到新宿 16:08，16:50 到浅草入住；23:30 前到浅草寺宝蔵门占位，<b>0:00 除夜の鐘</b>（约 40 分钟，游客只能观看和参拜，不能亲手敲）。1.1 早上浅草寺初诣，明治神宫已挪到 1.2 早上 8 点。</div>
+    <div class="note-strip"><strong>🎫 周游券：</strong>豪华版关西乐享周游券，连续 7 天窗口选 12.23—12.29；USJ 日期选 12.25。<b>先在 App 里确认 A 区是否真含 USJ Studio Pass</b>——渠道标题写的是「可选 USJ 1 日券」，不选就不含。</div>
+    <div class="note-strip"><strong>⏳ 关键截止：</strong>10.31 递签 · 11/29 三岛巴士开售 · 11/30 富士回遊开售 · 12.15 京都扣款 · 12.17 京都免费取消 · 12.22 东京扣款 · 12.24 东京免费取消 · 12.26 河口湖扣款 · 12.28 河口湖免费取消</div>
   </section>
 
   <section class="panel" id="panel-map">
@@ -468,97 +446,6 @@
     <div id="mapFallback" class="note-strip" style="display:none">地图库没有加载成功；检查网络后再打开本页，或看下面的路线示意图。</div>
     <h3 style="font-size:18px;margin:18px 0 4px">原来的路线示意（保留）</h3>
     <div id="schematicClone"></div>
-  </section>
-
-  <section class="panel" id="panel-anim">
-    <h2 class="section">16 天行程动画</h2>
-    <p class="lead">从武汉出发，经广州、关西、京都、河口湖到东京，再回上海/武汉。播放后左侧标记会按时间移动，右侧同步显示当天城市、活动和住宿。</p>
-    <div class="anim-wrap">
-      <div class="anim-stage">
-        <svg viewBox="0 0 1000 320" role="img" aria-label="16 天行程动画路线图">
-          <path d="M60,235 L170,235 L300,235" fill="none" stroke="var(--sub)" stroke-width="2" stroke-dasharray="5 5" opacity=".35"/>
-          <path d="M300,235 L415,155 L525,155 L625,235 L720,95 L840,155 L930,235" fill="none" stroke="var(--sub)" stroke-width="2" opacity=".35"/>
-          <path d="M930,235 L860,295 L60,235" fill="none" stroke="var(--red)" stroke-width="1.5" stroke-dasharray="3 7" opacity=".25"/>
-          <path id="animTrail" pathLength="1" d="M60,235 L170,235 L300,235 L415,155 L525,155 L625,235 L720,95 L840,155 L930,235 L860,295 L60,235" fill="none" stroke="var(--red)" stroke-width="4" stroke-dasharray="1" stroke-dashoffset="1" opacity=".9"/>
-
-          <g class="anim-node" data-node="wuhan" data-visit="0">
-            <circle cx="60" cy="235" r="7"/>
-            <text x="60" y="218" text-anchor="middle">武汉</text>
-            <text x="60" y="255" text-anchor="middle" class="anim-sub">12.22</text>
-          </g>
-          <g class="anim-node" data-node="guangzhou" data-visit="0">
-            <circle cx="170" cy="235" r="7"/>
-            <text x="170" y="218" text-anchor="middle">广州</text>
-            <text x="170" y="255" text-anchor="middle" class="anim-sub">过夜</text>
-          </g>
-          <g class="anim-node" data-node="kansai" data-visit="1">
-            <circle cx="300" cy="235" r="7"/>
-            <text x="300" y="218" text-anchor="middle">关西 T1</text>
-            <text x="300" y="255" text-anchor="middle" class="anim-sub">12.23</text>
-          </g>
-          <g class="anim-node" data-node="osaka" data-visit="1">
-            <circle cx="415" cy="155" r="9"/>
-            <text x="415" y="138" text-anchor="middle">大阪</text>
-            <text x="415" y="121" text-anchor="middle" class="anim-sub">3 晚</text>
-          </g>
-          <g class="anim-node" data-node="kyoto" data-visit="4">
-            <circle cx="525" cy="155" r="9"/>
-            <text x="525" y="138" text-anchor="middle">京都</text>
-            <text x="525" y="121" text-anchor="middle" class="anim-sub">3 晚</text>
-          </g>
-          <g class="anim-node" data-node="mishima" data-visit="7">
-            <circle cx="625" cy="235" r="6"/>
-            <text x="625" y="218" text-anchor="middle">三岛</text>
-            <text x="625" y="255" text-anchor="middle" class="anim-sub">换巴士</text>
-          </g>
-          <g class="anim-node" data-node="kawaguchiko" data-visit="7">
-            <circle cx="720" cy="95" r="9"/>
-            <text x="720" y="78" text-anchor="middle">河口湖</text>
-            <text x="720" y="61" text-anchor="middle" class="anim-sub">2 晚</text>
-          </g>
-          <g class="anim-node" data-node="tokyo" data-visit="9">
-            <circle cx="840" cy="155" r="9"/>
-            <text x="840" y="138" text-anchor="middle">东京</text>
-            <text x="840" y="121" text-anchor="middle" class="anim-sub">5 晚</text>
-          </g>
-          <g class="anim-node" data-node="narita" data-visit="14">
-            <circle cx="930" cy="235" r="6"/>
-            <text x="930" y="218" text-anchor="middle">成田 T1</text>
-            <text x="930" y="255" text-anchor="middle" class="anim-sub">1.5</text>
-          </g>
-          <g class="anim-node" data-node="shanghai" data-visit="14">
-            <circle cx="860" cy="295" r="6"/>
-            <text x="860" y="313" text-anchor="middle">上海浦东</text>
-            <text x="860" y="279" text-anchor="middle" class="anim-sub">1.5 夜</text>
-          </g>
-
-          <g id="animMarker">
-            <circle r="14" fill="var(--red)" opacity=".18" class="anim-pulse"/>
-            <circle r="9" fill="var(--red)"/>
-            <text id="animIcon" y="4" text-anchor="middle" font-size="11" fill="var(--paper)">✈</text>
-          </g>
-        </svg>
-        <div class="anim-date" id="animDate">12.22</div>
-        <div class="anim-stage-label" id="animStage">武汉 → 广州</div>
-      </div>
-
-      <aside class="anim-side">
-        <div class="anim-kicker" id="animKicker">DAY 1 · 12.22 周二</div>
-        <h3 id="animTitle">武汉 → 广州</h3>
-        <div class="anim-city" id="animCity">广州</div>
-        <ul class="anim-items" id="animItems"></ul>
-        <div class="anim-hotel" id="animHotel">宿 · 广州机场附近（未订）</div>
-      </aside>
-    </div>
-
-    <div class="anim-controls">
-      <button class="btn" id="animPlay" type="button">播放</button>
-      <button class="btn ghost" id="animRestart" type="button">重播</button>
-      <button class="btn ghost" id="animSpeed" type="button">1×</button>
-      <div class="anim-progress"><i id="animBar"></i></div>
-      <span class="tiny" id="animCounter">12.22 → 1.6</span>
-    </div>
-    <p class="tiny">动画按行程顺序播完 16 天；日本段时间为示意，实际乘车/航班以当天时刻表为准。</p>
   </section>
 
   <section class="panel" id="panel-days">
@@ -625,14 +512,15 @@
         <div class="kicker">💴 THEO'S BUDGET</div>
         <div class="budget-lines">
           <label>大阪住宿<input id="budgetOsaka" type="number" min="0" value="1200"></label>
-          <label>每日餐饮<input id="budgetFood" type="number" min="0" value="180"></label>
-          <label>每日交通<input id="budgetTransport" type="number" min="0" value="80"></label>
-          <label>城际交通<input id="budgetIntercity" type="number" min="0" value="1200"></label>
-          <label>门票/体验<input id="budgetTickets" type="number" min="0" value="2000"></label>
-          <label>购物/代购<input id="budgetShopping" type="number" min="0" value="3000"></label>
+          <label>两个机场夜<input id="budgetAirport" type="number" min="0" value="900"></label>
+          <label>每日餐饮<input id="budgetFood" type="number" min="0" value="150"></label>
+          <label>日本交通<input id="budgetTransport" type="number" min="0" value="1250"></label>
+          <label>周游券+门票<input id="budgetIntercity" type="number" min="0" value="1680"></label>
+          <label>签证+保险+eSIM<input id="budgetTickets" type="number" min="0" value="800"></label>
+          <label>购物/代购（可选）<input id="budgetShopping" type="number" min="0" value="3000"></label>
         </div>
         <div class="budget-total"><span>预计总预算</span><b id="budgetTotal">¥0</b></div>
-        <p class="tiny">已含机票 ¥2,557、京都 ¥1,680、河口湖 ¥1,105、东京 ¥4,585；大阪按你填的算，餐饮/市内交通按 14 天，城际交通按交通页约 ¥1,210 估。</p>
+        <p class="tiny">已含机票 ¥2,557、京都 ¥1,680、河口湖 ¥1,105、东京 ¥4,585。餐饮按 15 天；日本交通 ¥1,250（约 26,320 円）已含城际+市内+机场（不要再另加每日交通）。周游券按 US$151 ≈ ¥1,080 + 其他门票 ¥600 估，待 App 内核实。签证/保险/eSIM 与两个机场夜都在这里。不购物请把购物清零。</p>
       </div>
     </div>
 
@@ -642,16 +530,16 @@
     <h3 style="font-size:18px;margin:22px 0 6px">🚉 交通卡与实用信息</h3>
     <div class="tips-grid">
       <div class="tip-card"><b>💳 IC 卡</b>Suica/ICOCA 一张就够；地铁、JR、便利店都能刷。Apple Wallet 可加 Suica，实体卡可退押金。</div>
-      <div class="tip-card"><b>💴 现金</b>小店、神社、市场仍常用现金；建议带 ¥20,000—30,000，7-Eleven ATM 可取现。</div>
+      <div class="tip-card"><b>💴 现金</b>小店、神社、市场仍常用现金；建议带 ¥30,000—50,000，7-Eleven / 邮局 ATM 可取现（手续费约 ¥110/笔）。</div>
       <div class="tip-card"><b>📱 网络</b>eSIM 比 pocket WiFi 轻；多人共享再考虑 WiFi，带充电宝。</div>
-      <div class="tip-card"><b>🧳 行李</b>12.28 晚可把大件从京都寄到东京；新干线超大行李（长宽高 &gt;160cm）要预约。</div>
+      <div class="tip-card"><b>🧳 行李</b>12.28 晚在京都前台填单，大件寄东京酒店、指定 12.30 着（留一天缓冲），并提前告知东京酒店代收；新干线超大行李（长宽高 &gt;160cm）要预约特大荷物スペース。</div>
       <div class="tip-card"><b>🗺️ 导航</b>Google Maps + Navitime；用站名而不是店名搜；京都巴士挤，优先京阪/地铁。</div>
       <div class="tip-card"><b>🙇 礼仪</b>不 tipping；车上静音；不边走边吃；扶梯东京站左、大阪站右；温泉先冲洗。</div>
       <div class="tip-card"><b>🐢 节奏</b>每次换城至少住 2 晚；换城日不排重景点；京都和东京都用同一酒店做基地。</div>
     </div>
 
     <h3 style="font-size:18px;margin:22px 0 6px">🆘 应急</h3>
-    <div class="note-strip"><strong>110</strong> 警察 · <strong>119</strong> 消防/救护 · <strong>Japan Visitor Hotline 050-3816-2787</strong>（24h 多语言）· 中国驻日使馆 +81-3-3403-3065</div>
+    <div class="note-strip"><strong>110</strong> 警察 · <strong>119</strong> 消防/救护 · <strong>Japan Visitor Hotline 050-3816-2787</strong>（24h 多语言）· 中国驻日本大使馆 <strong>+81-3-6450-2195</strong> · 外交部全球领事保护 <strong>+86-10-12308</strong></div>
 
     <h3 style="font-size:18px;margin:22px 0 6px">📚 参考的 GitHub 攻略</h3>
     <ul class="src-list">
@@ -660,6 +548,60 @@
       <li><a href="https://github.com/jamesmontemagno/japan-planner" target="_blank" rel="noopener">jamesmontemagno/japan-planner</a>：路线图、预算拆分、可打印行程。</li>
       <li><a href="https://github.com/gavtay/japanerary" target="_blank" rel="noopener">gavtay/japanerary</a>：静态旅行指南的结构参考。</li>
     </ul>
+  </section>
+
+  <section class="panel" id="panel-visa">
+    <h2 class="section">🛂 签证 · 时间线 · 应急</h2>
+    <p class="lead">这一页只放「真会让你误事」的东西：签证、两个还没订的机场夜、11 月两个开售日、2026 年免税新规、时区差和应急电话。</p>
+
+    <h3 style="font-size:18px;margin:22px 0 6px">① 签证：现在就要动</h3>
+    <div class="note-strip"><strong>普通中国护照去日本必须办签证。</strong>JESTA（日本版 ESTA）还没实施，目标是 2028 财年，而且只针对免签国旅客，跟你无关；Visit Japan Web 仍然要填，但它不是签证。距离出发还有 <b id="visaDaysLeft">约 2 个月</b>，递签前还要准备机酒订单、在职/在读证明、财力证明——<b>本周不确认领区和代办，就会挤到 12 月。</b></div>
+    <table>
+      <thead><tr><th>事项</th><th>何时做</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>确认领区 + 找代办 / 自己送签</td><td>10 月底前</td><td>按户籍或长期居住地选领区；先问清楚要不要财力证明</td></tr>
+        <tr><td>准备材料</td><td>11 月上旬</td><td>护照、照片、申请表、机酒订单（你已经有全部确认单）、在职/在读证明、流水</td></tr>
+        <tr><td>递交</td><td>11 月中旬前</td><td>正常 5—7 个工作日，加代办邮寄留 2 周；旺季会慢</td></tr>
+        <tr><td>拿到签证后再动钱</td><td>—</td><td>不可退的机票款、自动扣款的酒店（12.15 / 12.22 / 12.26）都已锁定，签证没下来会很被动</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:18px;margin:22px 0 6px">② 出发前时间线</h3>
+    <table>
+      <thead><tr><th>节点</th><th>要做的事</th><th>为什么不能拖</th></tr></thead>
+      <tbody>
+        <tr><td><b>10 月底</b></td><td>签证递出去；核实周游券 A 区是否含 USJ</td><td>签证是唯一「做不成整趟作废」的事；周游券不核实，12.25 和门票预算都悬空</td></tr>
+        <tr><td><b>11 月上旬</b></td><td>订广州夜 + 上海夜酒店；确认南航国内段行李额</td><td>两个机场夜是唯一还空着的住宿；国内段可能只有 20kg，日本买的东西会超重</td></tr>
+        <tr><td><b>11/29 10:00 JST</b></td><td>抢 12.29 三岛 14:20 巴士 + 京都→三岛新干线指定席</td><td>全席指定，年末首日；买不到只能改路线</td></tr>
+        <tr><td><b>11/30 10:00 JST</b></td><td>抢 12.31 14:08 富士回遊指定席</td><td>全天只有四班上行，满座就要换高速巴士</td></tr>
+        <tr><td><b>12 月上旬</b></td><td>餐厅（京都、12.31、1.1）；京都酒店最后确认（12.17 不可退）；保险；eSIM</td><td>12 月是订餐最难时段，热门店 12 月初就满</td></tr>
+        <tr><td><b>12/15—12/22</b></td><td>扣款核对（京都 12.15、东京 12.22、河口湖 12.26）；东京酒店 12.24 前可免费取消</td><td>过点就收 10%—100%</td></tr>
+        <tr><td><b>12/22 出发前</b></td><td>Visit Japan Web 填好；现金换好；行李秤一遍</td><td>入境二维码在飞机上没网也能用</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:18px;margin:22px 0 6px">③ 两个还没订的机场夜</h3>
+    <div class="tip-card" style="margin-bottom:8px"><b>12.22 广州（23:30 落地 → 次日 09:40 国际）</b>行李已直挂到关西，取不出来，<b>过夜用品必须全在 8kg 手提里</b>。必须出机场住：优先白云 T2 步行可达或免费接驳的酒店，<b>一定要确认 24h 前台和凌晨 00:30 能入住</b>，次日 07:10 回 T2（国际截载 08:40，别按 07:40 排）。预算 ¥150—1,000。</div>
+    <div class="tip-card"><b>1.5 上海浦东（17:00 落地 → 次日 10:45 同楼起飞）</b>要取全部行李、次日重新托运。首选 T2 航站楼内可步行的酒店（零接驳最稳），次选有免费穿梭的机场酒店；<b>08:30 出发够用</b>（08:45 到柜台，距国内截载 10:05 还有 1h20），但别晚于 09:00。预算 ¥350—1,000。</div>
+
+    <h3 style="font-size:18px;margin:22px 0 6px">④ 时差：日本比北京快 1 小时</h3>
+    <div class="note-strip">整天行程里的时刻<b>除特别标注外都是当地时间</b>。最容易踩的四处：12.23 关西 14:10 = 北京 13:10（别按北京时间约接机）；1.5 浦东 17:00 = 日本 18:00；12.22 广州 23:30 和 1.6 武汉 12:45 是北京时间；12.23 落地日本那一刻起，每天的闹钟都按日本时间设。<b>手机自动同步时区，但机票和酒店确认单上的时间是各自当地的。</b></div>
+
+    <h3 style="font-size:18px;margin:22px 0 6px">⑤ 2026 年免税新规（会影响 1.5 早上）</h3>
+    <div class="note-strip blue">2026-11-01 起改成「先付后退」：买东西时先付含税价，离境时在机场退税。<b>离境前必须先到海关（税关）柜台确认，再办托运</b>——顺序反了，免税品进了托运行李就退不了。免税品要全部随身。可用 Visit Japan Web 提前在线做税关确认。这也是 1.5 提前到 11:00 到成田的原因。</div>
+
+    <h3 style="font-size:18px;margin:22px 0 6px">⑥ 应急</h3>
+    <div class="note-strip"><strong>日本：</strong>警察 <b>110</b> · 消防/救护 <b>119</b> · Japan Visitor Hotline <b>050-3816-2787</b>（24 小时多语言）· 中国驻日本大使馆 <b>+81-3-6450-2195</b> · 外交部全球领事保护 <b>+86-10-12308</b>。建议出发前把中国领事 App 里的「海外中国公民登记」和使馆安全提醒再看一遍。</div>
+    <ul class="timeline">
+      <li><div class="when">护照丢失</div><div class="what">先去最近的警察署报案拿「遺失届出証明書」</div><div class="hint">再联系中国驻日使领馆办旅行证；复印件和电子版提前存在手机里。</div></li>
+      <li><div class="when">生病 / 受伤</div><div class="what">先打 119 或找酒店前台，就近去医院</div><div class="hint">带保险单和救援电话；日本大医院初诊要介绍信，急诊除外。保险要确认「医疗直付」。</div></li>
+      <li><div class="when">航班大面积延误</div><div class="what">同一张票的联程由航司负责改签</div><div class="hint">12.22 和 1.5 都是联程，延误受保护；但要自己盯柜台，别只等广播。</div></li>
+      <li><div class="when">地震 / 海啸</div><div class="what">就地避险，远离窗户和海岸</div><div class="hint">河口湖、东京都有避难所标识；打开手机的地震预警，跟酒店确认集合点。</div></li>
+      <li><div class="when">12.31 走散 / 手机没电</div><div class="what">提前约定浅草寺某个门为集合点</div><div class="hint">除夕浅草寺周边会限流，信号极差；带充电宝，约定 2 小时一次报平安。</div></li>
+    </ul>
+
+    <h3 style="font-size:18px;margin:22px 0 6px">⑦ 还有哪些没确证</h3>
+    <div class="note-strip">京都→三岛新干线的具体班次与票价、三岛线巴士 12 月末的临时班次（往年 12 月中旬公布）、Shibuya Sky 年末年始营业时间、筑地场外市场 1/2—1/4 休市日、周游券 C 区是否仍含利木津/HARUKA、签证材料细节与周期、Suica 实体卡售卖状态——这些<b>出发前 2 周再核一次</b>，不要现在写死。</div>
   </section>
 
   <section class="panel" id="panel-shops">
@@ -719,17 +661,18 @@
 
   <section class="panel" id="panel-newyear">
     <h2 class="section">🎍 东京跨年怎么过</h2>
-    <p class="lead">🏮 12.31 晚上到 1.2，按这个顺序走，避开最拥挤的时段。</p>
+    <p class="lead">🏮 12.31 下午到浅草，一直到 1.2 早上，按这个顺序走，避开最拥挤的时段。</p>
     <ul class="timeline">
-      <li><div class="when">12.31 15:30</div><div class="what">浅草寺、仲见世、吾妻桥</div><div class="hint">先在白天看一眼，晚上人多到走不动。</div></li>
-      <li><div class="when">12.31 18:00</div><div class="what">晚餐</div><div class="hint">除夕很多餐厅提前关门，务必提前订；订不到就在酒店附近吃。</div></li>
-      <li><div class="when">12.31 22:30</div><div class="what">浅草寺除夕钟，或都厅/王子狐狸巡游</div><div class="hint">三选一，别赶场；浅草寺人最多，去就提前 1 小时到。</div></li>
-      <li><div class="when">01.01 07:00</div><div class="what">浅草寺初诣</div><div class="hint">早上 9 点前到，之后人潮会明显变多。</div></li>
-      <li><div class="when">01.01 10:00</div><div class="what">明治神宫初诣</div><div class="hint">原宿站下车；参拜排队约 30—60 分钟。</div></li>
-      <li><div class="when">01.02 10:00</div><div class="what">涩谷、原宿福袋与初卖</div><div class="hint">1.2 是全年最挤（初卖+皇居参贺+新干线返程）；只保留涩谷，Shibuya Sky 订 16:00。</div></li>
+      <li><div class="when">12.31 16:50</div><div class="what">到浅草酒店办入住、放行李</div><div class="hint">14:08 富士回遊从河口湖发，16:08 到新宿，再转约 35 分钟到浅草。</div></li>
+      <li><div class="when">12.31 17:30</div><div class="what">浅草寺、仲见世、吾妻桥</div><div class="hint">趁天还没全黑先看一眼；仲见世很多店 18:00—19:00 就关，别指望晚上逛。</div></li>
+      <li><div class="when">12.31 19:00</div><div class="what">晚餐</div><div class="hint">除夕很多餐厅提前关门，务必提前订；订不到就在酒店附近吃。</div></li>
+      <li><div class="when">12.31 23:30</div><div class="what">浅草寺宝蔵门占位，等 0:00 除夜の鐘</div><div class="hint">撞钟是<b>元旦 0:00 开始</b>、108 响约 40 分钟；<b>游客不能亲手敲</b>，只能观看和参拜。22:00—1:00 人最多，所以 23:30 前到。都厅 TOKYO NIGHTTIME PROJECT、王子狐狸巡游要和这里二选一。</div></li>
+      <li><div class="when">01.01 06:00</div><div class="what">浅草寺初诣（人最少的时候再看一次）</div><div class="hint">7 点后人潮明显变多；一晚没睡的话参拜完就回酒店补觉。</div></li>
+      <li><div class="when">01.01 09:00</div><div class="what">下町初诣：浅草神社、待乳山聖天、今戸神社</div><div class="hint">1.1 百货全关，寺社和散步才是正解；晴空塔、墨田一带也开。</div></li>
+      <li><div class="when">01.02 08:00</div><div class="what">明治神宫初诣</div><div class="hint">官方明示三が日 <b>10:00 以后最挤</b>，所以挪到 1.2 早上 8 点；参拜完直接原宿、表参道、涩谷，一路顺。</div></li>
     </ul>
     <div class="note-strip"><strong>提醒：</strong>12.31 晚东京主要线路通宵运行，但车站和浅草寺周边非常拥挤；1.1 很多商场和餐厅休息，行程以寺社和散步为主。</div>
-    <div class="note-strip blue"><strong>保暖：</strong>东京 12.31—1.1 夜间通常 3—6℃，浅草寺排队风大，带围巾和暖宝宝。</div>
+    <div class="note-strip blue"><strong>保暖：</strong>东京 12.31—1.1 夜间通常 3—6℃，浅草寺排队风大，带围巾和暖宝宝。<b>0:00 敲完钟往回走时人潮最堵</b>，别急着挤地铁，先在便利店躲 20 分钟。</div>
   </section>
 
   <section class="panel" id="panel-tickets">
@@ -740,44 +683,51 @@
     <table>
       <thead><tr><th>日期</th><th>用法</th><th>备注</th></tr></thead>
       <tbody>
-        <tr><td>12.23</td><td>C 区：关西机场利木津巴士 → 难波</td><td>行李多更省事，约 50 分钟</td></tr>
-        <tr><td>12.23</td><td>普通项 ①：阿倍野 HARUKAS 300（可选）</td><td>晚餐后去，22:00 前；太累挪到 12.24</td></tr>
-        <tr><td>12.24</td><td>普通项 ②：梅田蓝天大厦 空中庭园</td><td>16:30 上去看日落</td></tr>
-        <tr><td>12.25</td><td>A 区：USJ 1 日券＋1 项快速通关；B 区：餐厅/爆米花；普通项 ③：空庭温泉</td><td>快速通关建议哈利波特禁忌之旅或飞天翼龙</td></tr>
+        <tr><td>12.23</td><td>C 区：关西机场利木津巴士 → 难波 OCAT</td><td>约 50 分钟；入境超过 60 分钟就坐下一班（班距 20—30 分钟）</td></tr>
+        <tr><td>12.24</td><td>普通项 ①：阿倍野 HARUKAS 300</td><td>11:30 上去，白天看城市（12.23 晚已排道顿堀，不回头）</td></tr>
+        <tr><td>12.24</td><td>普通项 ②：梅田蓝天大厦 空中庭园</td><td>16:30 上去看日落（16:50）</td></tr>
+        <tr><td>12.25</td><td>A 区：USJ 1 日券＋1 项快速通关；B 区：餐厅/爆米花；普通项 ③：空庭温泉</td><td>先确认 A 区是否真含 USJ；快通建议哈利波特禁忌之旅或飞天翼龙</td></tr>
       </tbody>
     </table>
-    <div class="note-strip">官方页面写“7 日内最多 6 种设施”，与 KKday 的 3＋2＋1＋1 分区说明略有出入。以 App 内实际可兑换数量为准；只能选 6 项时，优先保留 USJ、快速通关、机场巴士和 2 项普通设施。</div>
-    <div class="note-strip blue"><strong>三岛 → 河口湖的巴士是什么：</strong>富士急行巴士（Mishima–Kawaguchiko Line），从三岛站南口到河口湖站，约 1 小时 30 分、约 ¥2,500。它不在周游券里，也不是机场利木津巴士；12.29 接近新年，建议提前订。替代方案是 JR 到御殿场再转巴士（更慢），或打车（贵很多）。</div>
+    <div class="note-strip"><strong>先核实，再排日程：</strong>官方兑换页只写「启用连续 7 天 → 任选 3 项普通设施 → 从豪华 A 区 / B 区选择」，<b>没有「A 区 2 项」，也没有「7 日内最多 6 项」</b>（后者应是标准版规则）。二手评测称豪华版含 USJ Studio Pass + 4 选 1 单次快通、约 US$151，但所有渠道标题都写「<b>可选</b> USJ 1 日券」——A 区不选 USJ 就不含门票。今天就在 App 里截图 A/B 区清单，把 USJ 兑换日锁 12.25；不含门票就立刻单买，年末库存紧。</div>
+    <div class="note-strip blue"><strong>三岛 → 河口湖的巴士：</strong>富士急〈特急〉三島・河口湖ライナー，三岛站南口 → 河口湖站，约 80—90 分钟、网上 ¥2,500 / 窗口 ¥2,700，<b>全席指定，必须预约，错过作废</b>。发车时刻：7:20 / 8:20 / 9:20 / 10:20 / 11:20 / 12:20 / 13:20 / 13:50 / 14:20 / 15:20 / 16:20 / 17:20 —— <b>没有 14:05</b>。11/29 10:00（JST）开售。它不在周游券里，也不是机场利木津巴士。</div>
+    <div class="note-strip"><strong>关键班次只有这几班（订不到就改行程）：</strong>12.29 三岛 → 河口湖 选 <b>14:20</b>（13:50 只有 13 分钟换乘，不建议赌）；12.31 河口湖 → 新宿 富士回遊上行全天只有 <b>14:08 / 14:58 / 16:48 / 17:41</b> 四班，<b>没有 11:00</b>，备选是河口湖→バスタ新宿 高速巴士（班次多，约 1 小时 45 分）。</div>
 
     <h3 style="font-size:18px;margin:18px 0 4px">📅 需要提前预约</h3>
     <table>
       <thead><tr><th>项目</th><th>时间</th><th>备注</th></tr></thead>
       <tbody>
-        <tr><td>周游券绑定＋7 天启用</td><td>出发前</td><td>12.23—12.29；启用后不可改</td></tr>
-        <tr><td>USJ 入园日＋快速通关</td><td>尽快</td><td>日期选 12.25；快速通关选项目</td></tr>
-        <tr><td>三岛 → 河口湖 富士急巴士</td><td>提前 1 个月</td><td>12.29 14:05 班次</td></tr>
-        <tr><td>富士回游 河口湖 → 新宿</td><td>提前 1 个月</td><td>12.31 11:00 指定席</td></tr>
-        <tr><td>Shibuya Sky 日落场</td><td>提前 2—3 周</td><td>1.2 16:00</td></tr>
-        <tr><td>12.31、1.1 晚餐</td><td>提前 1—2 周</td><td>除夕和元旦很多店休息</td></tr>
+        <tr><td><b>日本签证</b></td><td><b>本周递签（10 月底前）</b></td><td>普通护照个人旅游签；正常 5—7 个工作日 + 代办时间</td></tr>
+        <tr><td>周游券 A 区核实</td><td>今天</td><td>Travel Contents App 内截图 A/B 区，确认是否含 USJ Studio Pass</td></tr>
+        <tr><td>周游券绑定＋7 天启用</td><td>12 月初</td><td>12.23—12.29；启用后不可改</td></tr>
+        <tr><td>USJ 入园日＋快速通关</td><td>尽快</td><td>日期选 12.25；超级任天堂世界需整理券或快通</td></tr>
+        <tr><td><b>三岛 → 河口湖 富士急巴士</b></td><td><b>11/29 10:00 JST</b></td><td>锁 12.29 14:20 班次；同时订京都→三岛新干线指定席</td></tr>
+        <tr><td><b>富士回遊 河口湖 → 新宿</b></td><td><b>11/30 10:00 JST</b></td><td>锁 12.31 14:08；满座就改高速巴士</td></tr>
+        <tr><td>Shibuya Sky 日落场</td><td>提前 2—3 周</td><td>1.2 16:00（日落 16:45）</td></tr>
+        <tr><td>ゆらり 日归温泉</td><td>12.30 当天</td><td>提前 1 小时网上预约，站发接驳 15:00 / 18:00</td></tr>
+        <tr><td>12.31、1.1 晚餐</td><td>提前 3—4 周</td><td>除夕和元旦很多店休息，12 月就爆满</td></tr>
       </tbody>
     </table>
+
+    <div class="note-strip"><strong>这张表已含市内交通</strong>（大阪地铁、京都市内、东京地铁券、机场段），所以预算卡里「日本交通」填 ¥1,250 就够，<b>不要再另加「每日交通」</b>。京都「市バス一日券」早在 2023-09-30 停售，现行是「地下鉄・バス一日券」¥1,100，按当天坐 4 次以上才划算。</div>
+    <div class="note-strip blue"><strong>免税新规（2026-11-01 起）：</strong>改成「先付后退」。离境前必须<b>先去海关（税关）柜台确认、再办托运</b>，免税品全部随身；同一张小票少一件可能整单不能退。可用 Visit Japan Web 在线办税关确认。1.5 因此把到机场时间提前到 11:00。</div>
 
     <h3 style="font-size:18px;margin:18px 0 4px">交通预算（不含周游券已含部分）</h3>
     <table>
       <thead><tr><th>段落</th><th>参考价</th></tr></thead>
       <tbody>
         <tr><td>大阪市内地铁</td><td>¥600</td></tr>
-        <tr><td>大阪 → 京都（京阪）</td><td>¥420</td></tr>
+        <tr><td>难波 → 淀屋桥 → 清水五条（四桥线＋京阪）</td><td>¥650</td></tr>
         <tr><td>京都市内巴士/地铁 2 天</td><td>¥1,000</td></tr>
         <tr><td>伏见稻荷、宇治往返</td><td>¥1,000</td></tr>
         <tr><td>岚山往返</td><td>¥500</td></tr>
-        <tr><td>京都 → 三岛 新干线</td><td>¥11,000</td></tr>
-        <tr><td>三岛 → 河口湖 巴士</td><td>¥2,500</td></tr>
+        <tr><td>京都 → 三岛 新干线（ひかり/こだま，未确证）</td><td>约 ¥11,000</td></tr>
+        <tr><td>三岛 → 河口湖 富士急ライナー</td><td>¥2,500</td></tr>
         <tr><td>河口湖当地交通</td><td>¥1,500</td></tr>
-        <tr><td>河口湖 → 新宿 富士回游</td><td>¥4,130</td></tr>
-        <tr><td>东京地铁 72 小时券</td><td>¥1,500</td></tr>
+        <tr><td>河口湖 → 新宿 富士回遊</td><td>¥4,200</td></tr>
+        <tr><td>东京地铁 72 小时券</td><td>¥2,000</td></tr>
         <tr><td>浅草 → 成田</td><td>¥1,370</td></tr>
-        <tr><td><strong>合计</strong></td><td><strong>约 ¥25,500（约 1,210 元）</strong></td></tr>
+        <tr><td><strong>合计</strong></td><td><strong>约 ¥26,320（约 1,250 元）</strong></td></tr>
       </tbody>
     </table>
   </section>
@@ -805,130 +755,132 @@ const KEY = 'jp-trip-2026-v1';
 
 const DAYS = [
   {date:'2026-12-22', md:'12.22', wd:'周二', city:'广州', title:'武汉 → 广州', hotel:'广州机场附近（未订）', items:[
-    ['18:30','到武汉天河 T3，办理托运'],
-    ['21:30','航班起飞'],
-    ['23:30','到广州白云 T2，行李直挂'],
-    ['00:10','机场附近酒店休息（待订）']
+    ['18:30','到武汉天河 T3，办理托运（国际段行李直挂）'],
+    ['21:30','航班起飞（北京时间）'],
+    ['23:30','到广州白云 T2；行李已直挂，随身只带小包过夜'],
+    ['00:10','机场附近酒店休息（待订，必须有 24h 前台）']
   ]},
   {date:'2026-12-23', md:'12.23', wd:'周三', city:'大阪', title:'广州 → 关西 → 大阪', hotel:'大阪难波南酒店 ①', items:[
-    ['07:40','到白云 T2，安检出境'],
-    ['09:40','航班起飞'],
-    ['14:10','到关西 T1'],
-    ['15:20','利木津巴士 → 难波（周游券 C 区）'],
-    ['16:15','入住难波南酒店'],
-    ['17:30','道顿堀、戎桥、心斋桥']
+    ['07:10','到白云 T2 安检出境（国际截载 08:40）',1],
+    ['09:40','航班起飞（北京时间）'],
+    ['14:10','到关西 T1（日本时间，比北京快 1 小时）'],
+    ['14:10','入境+取行李；年末按 60—90 分钟预留，超过 60 分钟就坐下一班巴士',1],
+    ['15:20','利木津巴士 → 难波 OCAT（周游券 C 区，约 50 分钟；兜底 15:50 / 16:20）'],
+    ['16:10—17:20','到难波 OCAT，步行到难波南酒店（视入境排队，预计 17:00—17:30 入住）'],
+    ['17:45','道顿堀、戎桥、心斋桥夜景 + 晚餐']
   ]},
-  {date:'2026-12-24', md:'12.24', wd:'周四', city:'大阪', title:'大阪城 → 梅田', hotel:'大阪难波南酒店 ②', items:[
-    ['09:00','大阪城公园、天守阁'],
-    ['12:30','午餐'],
+  {date:'2026-12-24', md:'12.24', wd:'周四', city:'大阪', title:'大阪城 → 天王寺 → 梅田', hotel:'大阪难波南酒店 ②', items:[
+    ['09:00','大阪城公园、天守阁（16:30 停止入场）'],
+    ['11:30','天王寺 · 阿倍野 HARUKAS 300（周游券普通项，白天看城市）'],
+    ['12:45','天王寺 / 新世界午餐'],
     ['14:00','梅田商圈、中崎町'],
-    ['16:30','梅田蓝天大厦（周游券普通项）'],
-    ['18:00','梅田圣诞市集（12 月，可选）'],
-    ['19:00','梅田/中崎町晚餐'],
-    ['20:30','阿倍野 HARUKAS 300（可选）']
+    ['16:30','梅田蓝天大厦 空中庭园（周游券普通项，日落 16:50）'],
+    ['18:00','梅田圣诞市集（12 月限定）'],
+    ['19:00','梅田 / 中崎町晚餐']
   ]},
   {date:'2026-12-25', md:'12.25', wd:'周五', city:'大阪', title:'日本环球影城', hotel:'大阪难波南酒店 ③', items:[
-    ['出门前','到前台确认两张订单衔接、不用换房',1],
-    ['06:45','出发去 USJ'],
-    ['07:15','门口排队，争取第一批入园'],
-    ['08:00','USJ 全天（周游券 A 区）'],
-    ['08:10','USJ App 绑票，先约超级任天堂世界'],
+    ['务必','12.23 入住时当面确认两张订单已关联、12.25 不用换房',1],
+    ['06:45','出发去 USJ（难波→西九条→环球城，约 25 分钟）'],
+    ['07:15','到门口排队；圣诞季通常 8:00 前后开园'],
+    ['08:10','App 绑票，入园第一件事约超级任天堂世界整理券'],
     ['12:00','B 区：餐厅预约＋饮料 / 爆米花杯'],
-    ['18:00','夜间巡游/圣诞活动'],
-    ['20:30','空庭温泉（周游券普通项，可选）']
+    ['18:00','夜间巡游、圣诞活动'],
+    ['20:30','空庭温泉（周游券普通项，营业到 23:00，可选）']
   ]},
   {date:'2026-12-26', md:'12.26', wd:'周六', city:'京都', title:'大阪 → 京都', hotel:'京都清水五条酒店 ①', items:[
     ['11:30','退房（12:00 前）'],
-    ['11:45','难波 → 淀屋桥 → 京阪 → 清水五条'],
-    ['13:00','到酒店寄存行李'],
+    ['11:45','难波 → 淀屋桥（四桥线）→ 京阪 → 清水五条，约 70 分钟'],
+    ['13:00','到酒店寄存行李（15:00 才能入住）；午餐'],
     ['14:30','清水寺'],
     ['16:00','二年坂、三年坂、八坂神社'],
-    ['17:30','祇园、花见小路'],
-    ['19:30','回酒店办理入住']
+    ['17:00','祇园、花见小路（16:50 天黑）'],
+    ['19:30','回酒店办理入住 + 晚餐']
   ]},
   {date:'2026-12-27', md:'12.27', wd:'周日', city:'京都', title:'伏见稻荷 → 宇治', hotel:'京都清水五条酒店 ②', items:[
-    ['07:00','清水五条 → 伏见稻荷'],
-    ['07:30','伏见稻荷大社，千本鸟居'],
-    ['09:30','伏见稻荷 → 宇治'],
+    ['07:00','清水五条 → 伏见稻荷（京阪 4 分钟）'],
+    ['07:30','伏见稻荷大社，千本鸟居往上 30—40 分钟人最少'],
+    ['09:30','伏见稻荷 → 宇治（京阪＋京阪宇治线，约 25 分钟）'],
     ['10:30','平等院、宇治川、宇治桥'],
-    ['12:30','抹茶午餐'],
+    ['12:30','抹茶午餐（中村藤吉先取号再逛）'],
     ['14:30','宇治上神社、源氏物语博物馆（可选）'],
-    ['16:30','回京都，先斗町晚餐']
+    ['16:30','回京都，18:00 先斗町晚餐']
   ]},
   {date:'2026-12-28', md:'12.28', wd:'周一', city:'京都', title:'岚山（或奈良）', hotel:'京都清水五条酒店 ③', items:[
-    ['07:30','出发去岚山'],
-    ['08:30','竹林小径'],
+    ['07:30','出发去岚山（清水五条→京都站→JR 嵯峨野线，约 50 分钟）'],
+    ['08:30','竹林小径（早去几乎没人）'],
     ['09:00','天龙寺'],
     ['10:30','渡月桥、保津川'],
-    ['11:30','午餐'],
-    ['14:30','金阁寺'],
-    ['16:30','回市区']
+    ['11:30','岚山午餐'],
+    ['14:30','金阁寺（打车/巴士约 30 分钟）'],
+    ['16:30','回市区；晚上把大件行李宅急便寄东京酒店，指定 12.30 着',1]
   ]},
   {date:'2026-12-29', md:'12.29', wd:'周二', city:'河口湖', title:'京都 → 河口湖', hotel:'河口湖酒店 ①', items:[
     ['09:30','早餐、收拾'],
     ['10:45','退房（11:00 前）'],
-    ['11:00','清水五条 → 东福寺 → 京都站'],
-    ['11:52','新干线 → 三岛（以当日时刻表为准）'],
-    ['13:37','到三岛，换富士急巴士'],
-    ['14:05','三岛 → 河口湖（需预约）'],
-    ['15:35','到河口湖，入住'],
-    ['16:30','北岸散步']
+    ['11:00','清水五条 → 东福寺 → JR 奈良线 → 京都站，20—25 分钟'],
+    ['11:35','京都站买便当'],
+    ['11:52','新干线 ひかり / こだま → 三岛（のぞみ 全列不停三岛）',1],
+    ['13:37','到三岛；14:20 富士急三島・河口湖ライナー（全席指定，11/29 开售）',1],
+    ['15:50','到河口湖站，酒店接驳 7 分钟，16:10 入住'],
+    ['16:30','北岸 / 大石公园看日落（16:35）'],
+    ['18:30','晚餐；泡汤去 ゆらり（1,700 円，需提前 1 小时网上预约）']
   ]},
   {date:'2026-12-30', md:'12.30', wd:'周三', city:'河口湖', title:'富士山观景日', hotel:'河口湖酒店 ②', items:[
     ['06:50','北岸看日出（可选）'],
-    ['08:00','河口湖站 → 下吉田'],
-    ['08:30','新仓山浅间公园，398 级台阶'],
-    ['10:30','回河口湖，租自行车环湖（约 2 小时，看风况）'],
-    ['12:30','还车、午餐'],
-    ['14:00','忍野八海（按巴士时刻表）'],
-    ['16:00','大石公园/北岸日落'],
-    ['17:30','温泉、晚餐']
+    ['08:05','酒店接驳或步行 15 分钟到河口湖站'],
+    ['08:30','河口湖站 → 下吉田（富士急行 15 分钟）'],
+    ['09:00','新仓山浅间公园，398 级台阶，冬季台阶可能结冰',1],
+    ['11:00','回河口湖午餐；风况好才考虑环湖骑行（2 小时 ¥1,000）'],
+    ['13:00','忍野八海（巴士约 25 分钟，班次少，按时刻表提前到）'],
+    ['15:30','回北岸，大石公园 / 逆富士'],
+    ['17:00','ゆらり 温泉（预约）+ 晚餐']
   ]},
   {date:'2026-12-31', md:'12.31', wd:'周四', city:'东京', title:'河口湖 → 东京跨年', hotel:'东京浅草酒店 ①', items:[
-    ['09:30','退房（10:00 前）'],
-    ['10:00','酒店接驳 → 河口湖站'],
-    ['11:00','富士回游 → 新宿（指定席）'],
-    ['12:45','到新宿，转浅草'],
-    ['13:35','到 东京浅草酒店，寄存行李'],
-    ['15:30','浅草寺、仲见世、吾妻桥'],
-    ['18:00','晚餐（提前订）'],
-    ['22:30','浅草寺除夕钟，或都厅/王子狐狸巡游（二选一）']
+    ['09:30','早餐、收拾（10:00 前退房），行李寄前台'],
+    ['10:00','富士山补拍窗口：北岸 / 大石公园，午餐吃ほうとう'],
+    ['13:20','取行李，酒店接驳到河口湖站'],
+    ['14:08','富士回遊 → 新宿 16:08（全天只有 14:08 / 14:58 / 16:48 / 17:41 四班）',1],
+    ['16:15','新宿 → 中央线 → 神田 → 银座线 → 浅草，约 35 分钟'],
+    ['16:50','到浅草酒店办入住、放行李'],
+    ['17:30','浅草寺、仲见世、吾妻桥（白天先看一眼）'],
+    ['19:00','晚餐（除夕很多店早关，务必提前订）',1],
+    ['23:30','到浅草寺宝蔵门占位；0:00 除夜の鐘约 40 分钟，游客只能观看和参拜',1]
   ]},
   {date:'2027-01-01', md:'01.01', wd:'周五', city:'东京', title:'东京初诣', hotel:'东京浅草酒店 ②', items:[
-    ['07:00','浅草寺初诣'],
-    ['09:00','早餐'],
-    ['10:00','明治神宫'],
-    ['12:00','表参道散步、午餐'],
-    ['15:00','涩谷十字路口、宫下公园'],
-    ['18:00','回浅草']
+    ['06:00','浅草寺初诣（早去人少，7 点后明显变多）'],
+    ['08:00','早餐'],
+    ['09:00','浅草神社、待乳山聖天、今戸神社 下町初诣'],
+    ['11:00','晴空塔 / 墨田散步，或合羽桥道具街'],
+    ['14:00','回酒店休息'],
+    ['17:00','浅草晚餐（元旦很多店休息，提前订）',1]
   ]},
-  {date:'2027-01-02', md:'01.02', wd:'周六', city:'东京', title:'原宿、涩谷', hotel:'东京浅草酒店 ③', items:[
+  {date:'2027-01-02', md:'01.02', wd:'周六', city:'东京', title:'明治神宫、原宿、涩谷', hotel:'东京浅草酒店 ③', items:[
+    ['08:00','明治神宫初诣（官方：三が日 10:00 以后最挤，务必早去）',1],
     ['10:00','原宿、竹下通、表参道'],
     ['14:00','涩谷 PARCO、宫下公园'],
-    ['16:00','Shibuya Sky 日落场（预约）'],
+    ['16:00','Shibuya Sky 日落场（预约，日落约 16:45）'],
     ['18:30','涩谷晚餐']
   ]},
   {date:'2027-01-03', md:'01.03', wd:'周日', city:'东京', title:'上野、秋叶原', hotel:'东京浅草酒店 ④', items:[
-    ['09:30','上野公园、东京国立博物馆'],
+    ['09:30','上野公园、东京国立博物馆（12.26—12.31 休馆，1.3 开）'],
     ['12:00','阿美横丁午餐'],
     ['14:00','秋叶原'],
     ['17:00','回浅草']
   ]},
   {date:'2027-01-04', md:'01.04', wd:'周一', city:'东京', title:'银座、东京站', hotel:'东京浅草酒店 ⑤', items:[
-    ['08:30','筑地场外市场早餐'],
+    ['08:30','筑地场外市场早餐（1.4 周一，出发前查官方日历确认开市）'],
     ['10:30','银座'],
     ['13:00','东京站丸之内、KITTE 展望'],
-    ['15:00','皇居外苑'],
-    ['17:30','六本木夜景（可选）']
+    ['15:00','皇居外苑（東御苑 12.28—1.3 及周一/周五休，只逛外苑）'],
+    ['17:30','六本木之丘展望台夜景（可选）']
   ]},
   {date:'2027-01-05', md:'01.05', wd:'周二', city:'上海', title:'东京 → 上海', hotel:'上海浦东机场附近（未订）', items:[
-    ['09:30','早餐、收拾'],
-    ['10:30','退房（11:00 前）'],
-    ['10:45','都营浅草 → 成田 T1'],
-    ['11:55','到成田 T1，值机'],
-    ['14:20','航班起飞'],
-    ['17:00','到浦东 T2'],
-    ['18:00','机场酒店入住']
+    ['09:30','早餐、收拾（11:00 前退房）'],
+    ['09:50','都营浅草 → 成田 T1（Keisei Access Express 约 70 分钟）',1],
+    ['11:00','到成田 T1；有免税购物就先到税关柜台办确认，再托运行李',1],
+    ['14:20','航班起飞（日本时间）'],
+    ['17:00','到浦东 T2（北京时间 = 日本 18:00）'],
+    ['18:00','机场酒店入住（待订，确认清晨接驳班次）']
   ]},
   {date:'2027-01-06', md:'01.06', wd:'周三', city:'上海', title:'上海 → 武汉', hotel:'回家', items:[
     ['08:30','酒店接驳 → 浦东 T2'],
@@ -938,32 +890,35 @@ const DAYS = [
 ];
 
 const BACKUPS = {
-  '2026-12-23':'航班延误或入境排队过久，就取消道顿堀，只在酒店周边吃。',
-  '2026-12-24':'下雨就把大阪城换成大阪历史博物馆或梅田商场，晚上照常看夜景。',
-  '2026-12-25':'USJ 下雨优先室内项目和商店；快速通关仍按预约时间使用。',
-  '2026-12-26':'大雨就把清水寺挪到 12.28 上午，26 日先逛京都站或锦市场。',
-  '2026-12-27':'伏见稻荷下雨就只走到千本鸟居，宇治改成室内抹茶店。',
-  '2026-12-28':'岚山下雨就改奈良或京都站周边；金阁寺雨天也可以去。',
-  '2026-12-29':'新干线或巴士延误就打车去河口湖，或住三岛改次日一早进山。',
-  '2026-12-30':'看不到富士山就改音乐盒之森或温泉，31 日上午再补拍一次。',
-  '2026-12-31':'富士回游满座就改高速巴士到新宿；晚一点到东京也不影响跨年。',
-  '2027-01-01':'明治神宫人太多就改代代木公园、表参道散步。',
-  '2027-01-02':'Shibuya Sky 天气差就改涩谷 PARCO 或室内商场。',
-  '2027-01-05':'浅草线延误就改去京成上野坐 Skyliner。'
+  '2026-12-22':'武汉段延误就改签次日早班；广州酒店必须 24h 前台 + 免费接驳，凌晨到店不能被拒。',
+  '2026-12-23':'入境超 60 分钟就坐下一班利木津（班距 20—30 分钟），别为赶 15:20 省掉买票时间；太累就取消道顿堀，只在酒店周边吃。',
+  '2026-12-24':'下雨把大阪城换成大阪历史博物馆或梅田商场；HARUKAS 和蓝天大厦照常看景。',
+  '2026-12-25':'USJ 下雨优先室内项目和商店；快速通关仍按预约时间使用。体力不支就 20:00 前撤，改去空庭温泉。',
+  '2026-12-26':'大雨就把清水寺挪到 12.27 下午，26 日先逛京都站或锦市场。',
+  '2026-12-27':'伏见稻荷下雨就只走到千本鸟居；宇治改成室内抹茶店。',
+  '2026-12-28':'岚山下雨就改奈良或京都站周边；金阁寺雨天也可以去。行李宅急便照办，不受天气影响。',
+  '2026-12-29':'新干线延误就坐 15:20 那班巴士（末班 17:20）；全部错过就住三岛，次日一早进山。13:50 那班要 13 分钟换乘，不建议赌。',
+  '2026-12-30':'看不到富士山就改音乐盒之森、ゆらり 温泉；31 日上午还有一次补拍机会。',
+  '2026-12-31':'14:08 富士回遊满座就改 河口湖→バスタ新宿 高速巴士（班次多，约 1 小时 45 分），提前到浅草休息也一样跨年。',
+  '2027-01-01':'浅草寺太挤就先撤，改今戸神社、待乳山聖天；明治神宫已挪到 1.2 早上 8 点。',
+  '2027-01-02':'明治神宫 10 点后排队变长，8 点前到；Shibuya Sky 天气差就改涩谷 PARCO 或室内商场。',
+  '2027-01-03':'东博当天临时休馆就改国立西洋美术馆或上野公园散步，下午照常秋叶原。',
+  '2027-01-04':'筑地休市就改银座早餐；下雨把皇居外苑换成 KITTE 或东京站地下街。',
+  '2027-01-05':'浅草线延误就改京成上野坐 Skyliner；14:20 航班最晚 12:00 到 T1。'
 };
 
 const XHS_NOTES = {
-  '2026-12-25':'USJ：提前下载 App 并绑定门票，入园第一件事预约超级任天堂世界；单人通道说“Single”；不带自拍杆；找工作人员要贴纸。',
-  '2026-12-26':'西本愿寺在京都站附近，12 月初银杏很漂亮；12.29 想去要 09:45 提前退房、10:15 到京都站，时间会紧。不想赶就改成下鸭神社/京都御苑，人少。',
+  '2026-12-25':'USJ：提前下载 App 并绑定门票，入园第一件事预约超级任天堂世界；单人通道说 Single；不带自拍杆；找工作人员要贴纸。12.25 是这周最划算的一天（普通混雑），12.26—30 才是大混雑。',
+  '2026-12-26':'西本愿寺 12 月末银杏早落光，不值得为它赶时间；12.29 已排满（11:52 新干线），这天别加。想安静就去下鸭神社 / 京都御苑。',
   '2026-12-27':'伏见稻荷 + 宇治不要贪多，电车/公交班次间隔大；给宇治留 2—3 小时，平等院和抹茶店排队都要时间。',
-  '2026-12-28':'岚山天气不好就别硬去，奈良或京都御苑是替代；京都 12 月 16:30 左右就天黑，别把金阁寺排太晚。',
-  '2026-12-29':'河口湖站前罗森机位人很多，不必专程排；山中湖/河口湖公交错过一班可能等 1 小时，按时刻表提前到站。',
-  '2026-12-30':'河口湖租自行车约 2 小时 ¥1,000，逆时针从平野之滨骑到长池亲水公园；风大或路面结冰就不要骑。',
-  '2026-12-31':'东京跨年可选都厅 TOKYO NIGHTTIME PROJECT 或王子狐狸巡游（23:00 后到即可）；浅草寺人最多，去就 22:00 前到。',
-  '2027-01-01':'1.1 百货全关，便利店/药妆/唐吉诃德/连锁牛丼开；浅草寺、明治神宫是一年最挤，尽量 9 点前到。',
-  '2027-01-02':'1.2 是全年最挤：百货初卖、皇居参贺、新干线返程撞在一起。只保留涩谷 Sky，别再加银座/百货。',
-  '2027-01-03':'美术馆是阶梯式开馆，东博 1/2 起开；1/3 去上野博物馆可行，出发前再确认当日开馆时间。',
-  '2027-01-04':'1.4 是日本恢复的第一天，银座、东京站丸之内安排在这天比 1.2 舒服。'
+  '2026-12-28':'岚山天气不好就别硬去，奈良或京都站周边是替代；京都 12 月 16:50 就天黑，别把金阁寺排太晚。岚山トロッコ列车冬季运休，别买。',
+  '2026-12-29':'河口湖站前罗森机位人很多，不必专程排；山中湖/河口湖公交班次少，错过一班可能等 1 小时，按时刻表提前到站。三岛→河口湖是全席指定，错过作废。',
+  '2026-12-30':'这间酒店没有大浴场，泡汤去 ゆらり：1,700 円含毛巾，10:00—22:00，年中无休；河口湖站免费接驳只有 11:00 / 13:00 / 15:00 / 18:00 四班，必须提前 1 小时网上预约。环湖骑行约 2 小时 ¥1,000，风大或结冰就不要骑。',
+  '2026-12-31':'浅草寺除夜の鐘 0:00 开始、108 响约 40 分钟，游客不能亲手敲，只能观看和参拜；人最多的是 22:00—1:00，23:30 前到宝蔵门占位。都厅 TOKYO NIGHTTIME PROJECT、王子狐狸巡游要和浅草寺二选一，别赶场。',
+  '2027-01-01':'元旦百货全关，便利店/药妆/唐吉诃德/连锁牛丼开；浅草寺、明治神宫是一年最挤，明治神宫已挪到 1.2 早上 8 点前。',
+  '2027-01-02':'1.2 是全年最挤：百货初卖、皇居参贺、新干线返程撞在一起。明治神宫 8 点前到，之后只保留涩谷 Sky，别再加银座。',
+  '2027-01-03':'东博 12/26—12/31 年末休馆、1/1 只有 12:00—20:00、1/4 周一休；1/3 是东京段能进馆的最后一天，出发前再确认当日开馆时间。',
+  '2027-01-04':'1.4 是日本恢复正常的第一天，银座、东京站丸之内排这天比 1.2 舒服。新宿御苑（12.29—1.3 休园且周一休）和皇居東御苑（周一/周五 + 12.28—1.3 休）1.4 都进不去，别排。'
 };
 
 const XHS_CARDS = [
@@ -971,14 +926,14 @@ const XHS_CARDS = [
    points:['东京都厅都民广场 TOKYO NIGHTTIME PROJECT：光雕、演出、初音未来等，12.31 晚，都厅前站旁。','王子狐狸巡游：装束稻荷神社 → 王子稻荷神社，23:00 后到即可，王子站步行 6—7 分钟。','浅草寺、明治神宫是那两晚最挤的地方。'],
    apply:'12.31 晚上在浅草寺和都厅/王子之间二选一，别赶场。'},
   {cat:'跨年', title:'日本元旦停摆日历：哪些店真会关门', author:'小红薯6AC6E133', likes:'63',
-   points:['便利店、药妆、唐吉诃德、连锁牛丼、一兰不关。','个人餐厅/居酒屋 12.31 傍晚起休到 1.3；百货 1.1 关、1.2 初卖，部分 1.3 才开。','1.2 是全年最挤：初卖、皇居参贺、新干线返程撞在一起。','美术馆阶梯开馆：1.1 东博 13:00，1.2 国立西洋/科博，1.4 更多。'],
+   points:['便利店、药妆、唐吉诃德、连锁牛丼、一兰不关。','个人餐厅/居酒屋 12.31 傍晚起休到 1.3；百货 1.1 关、1.2 初卖，部分 1.3 才开。','1.2 是全年最挤：初卖、皇居参贺、新干线返程撞在一起。','美术馆阶梯开馆：1.1 东博 12:00 起，1.2 国立西洋/科博，1.4 更多（笔记原文，时间以官网为准）。'],
    apply:'1.2 只保留涩谷 Sky，银座放 1.4；想抢福袋就把 1.2 上午给百货，Shibuya Sky 改 1.3。12.31/1.1 晚餐提前订。'},
   {cat:'购物', title:'🇯🇵元旦1.1福袋盘点！附时间表', author:'呀吖wa宝记', likes:'164',
    points:['大部分百货 1.1 休息；大丸、高岛屋、松屋银座、阪急阪神等首卖日常在 1.2 或 1.3。','热门福袋 11—12 月官网抽选，很多是明袋；Amazon/乐天也能提前买。','福袋通常不能退换，抢店内限量要早到。'],
    apply:'想抢福袋就 1.2/1.3 早去，先查目标百货首卖日；不想挤就避开 1.2 百货。'},
   {cat:'富士山', title:'🗻河口湖正确打开方式㊙️怎么没人讲❓', author:'墙泥', likes:'2092',
    points:['别只拍罗森，租自行车环湖更自由，看到机位随时停。','普通车约 2 小时 ¥1,000，逆时针平野之滨 → 长池亲水公园，单程约 4 公里。','环湖基本是友好栈道，但冬天风大、结冰要小心。'],
-   apply:'12.30 上午 10:30 左右看风况骑行；风大/结冰改温泉或音乐盒之森。'},
+   apply:'想骑行就 12.30 上午 11:00 前看风况决定；风大或结冰直接改温泉、音乐盒之森。'},
   {cat:'富士山', title:'纯享两天绝美富士山（含游玩时间线）', author:'四季奶青的小老哥', likes:'928',
    points:['12 月富士山能见度超好；河口湖站前罗森机位人很多。','山中湖/河口湖公交班次少，错过一班可能等 1 小时。','山中湖租车 2 小时 ¥1,000，逆时针骑行；新宿 → 山中湖高速巴士坐左侧看富士山。'],
    apply:'12.29 到河口湖后别排太满；12.30 按巴士时刻表提前到站。'},
@@ -996,10 +951,10 @@ const XHS_CARDS = [
    apply:'现在就把 12.26/12.27 晚餐定下来；1 人优先寿司柜台/烧肉。'},
   {cat:'跨年', title:'🇯🇵2026日本跨年全62家可预订餐厅信息', author:'JapanFoodGuide', likes:'219',
    points:['12 月到 1 月是订餐最难时段，12 月初就爆满。','整理了 12.27—1.4 正常营业/部分营业的 62 家，含东京、大阪、京都。','跨年期间很多店休息，开门的更抢手。'],
-   apply:'12.31 和 1.1 晚餐本周就订；订不到就便利店/酒店餐厅兜底。'},
+   apply:'12.31 和 1.1 晚餐别等 12 月——11 月就订；订不到就便利店/酒店餐厅兜底。'},
   {cat:'京都', title:'现在来京都我只推荐这三个地方！12.5', author:'一斤金子总会发光', likes:'357',
    points:['西本愿寺：京都站附近，12 月初银杏很美，有阳光更出片。','下鸭神社：游客少，早上光线好。','京都御苑：本地人遛狗骑车，适合慢慢逛。'],
-   apply:'想去西本愿寺，12.29 要 09:45 提前退房、10:15 到京都站；不想赶就放弃，改下鸭/御苑。'},
+   apply:'12.29 已排满（10:45 退房、11:52 新干线），别再塞西本愿寺；想安静就去下鸭神社/京都御苑，排在 12.27 或 12.28。'},
   {cat:'京都', title:'京都跨年｜今年知恩院除夕敲钟要预约', author:'卡皮巴拉in京都', likes:'86',
    points:['知恩院除夕敲钟需要预约，不是直接去就能进。','京都除夕还有八坂神社、北野天满宫等初诣/敲钟活动。','12.31 晚京都公共交通拥挤，提前回酒店。'],
    apply:'你 12.29 已去河口湖、12.31 在东京，这条不用执行；以后改京都跨年再订。'},
@@ -1011,71 +966,47 @@ const XHS_CARDS = [
    apply:'你的 3+3+2+5 更松，别照搬 8 天路线；维持宇治一天、岚山/奈良二选一。'},
   {cat:'东京', title:'如果你元旦去东京，就会发现🧐', author:'svvg', likes:'8',
    points:['1.1 商场关门但折扣/福袋/盲盒多。','神田神社初诣排队近 2 小时，参拜礼仪看旁边人。','推荐咖啡店 shiten；上野商业街有 Keen/户外集合店，可顺路逛博物馆。'],
-   apply:'1.1 不去百货，改浅草寺 + 明治神宫；想逛街就 1.4 去银座/上野。'}
+   apply:'1.1 不去百货，改浅草寺 + 下町寺社；明治神宫已挪到 1.2 早上 8 点，想逛街就 1.4 去银座/上野。'}
 ];
 
-const ANIM_CITIES = {
-  wuhan:{x:60,y:235}, guangzhou:{x:170,y:235}, kansai:{x:300,y:235},
-  osaka:{x:415,y:155}, kyoto:{x:525,y:155}, mishima:{x:625,y:235},
-  kawaguchiko:{x:720,y:95}, tokyo:{x:840,y:155}, narita:{x:930,y:235},
-  shanghai:{x:860,y:295}
-};
 
-const ANIM_KEYFRAMES = [
-  {t:0, city:'wuhan'}, {t:0.35, city:'guangzhou'}, {t:0.8, city:'kansai'},
-  {t:1.0, city:'osaka'}, {t:3.4, city:'kyoto'}, {t:6.5, city:'mishima'},
-  {t:6.8, city:'kawaguchiko'}, {t:8.5, city:'tokyo'}, {t:13.4, city:'narita'},
-  {t:13.7, city:'shanghai'}, {t:15, city:'wuhan'}
-];
-
-const ANIM_DAYS = [
-  {date:'12.22', wd:'周二', node:'guangzhou', stage:'武汉 → 广州', title:'武汉 → 广州', city:'广州', hotel:'广州机场附近（未订）', items:['21:30 武汉 T3 起飞','23:30 到广州 T2','机场附近过夜']},
-  {date:'12.23', wd:'周三', node:'osaka', stage:'广州 → 关西 → 大阪', title:'广州 → 关西 → 大阪', city:'大阪', hotel:'大阪难波南酒店 ①', items:['09:40 广州起飞','14:10 关西 T1','15:20 利木津 → 难波','17:30 道顿堀']},
-  {date:'12.24', wd:'周四', node:'osaka', stage:'大阪 · 城市日', title:'大阪城 → 梅田', city:'大阪', hotel:'大阪难波南酒店 ②', items:['大阪城、天守阁','梅田蓝天大厦','18:00 梅田圣诞市集','20:30 HARUKAS（可选）']},
-  {date:'12.25', wd:'周五', node:'osaka', stage:'大阪 · USJ', title:'日本环球影城', city:'大阪', hotel:'大阪难波南酒店 ③', items:['06:45 出发','07:15 到门口','08:00 USJ 全天','先约任天堂世界','20:30 空庭温泉（可选）']},
-  {date:'12.26', wd:'周六', node:'kyoto', stage:'大阪 → 京都', title:'大阪 → 京都', city:'京都', hotel:'京都清水五条酒店 ①', items:['11:30 退房','13:00 酒店寄存','14:30 清水寺','17:30 祇园']},
-  {date:'12.27', wd:'周日', node:'kyoto', stage:'京都 · 稻荷/宇治', title:'伏见稻荷 → 宇治', city:'京都', hotel:'京都清水五条酒店 ②', items:['07:30 伏见稻荷','10:30 平等院','12:30 抹茶午餐','18:00 先斗町']},
-  {date:'12.28', wd:'周一', node:'kyoto', stage:'京都 · 岚山', title:'岚山 / 奈良', city:'京都', hotel:'京都清水五条酒店 ③', items:['08:30 竹林小径','09:00 天龙寺','14:30 金阁寺','16:30 回市区']},
-  {date:'12.29', wd:'周二', node:'kawaguchiko', stage:'京都 → 河口湖', title:'京都 → 河口湖', city:'河口湖', hotel:'河口湖酒店 ①', items:['10:45 退房','11:52 新干线 → 三岛','14:05 富士急巴士','15:35 到河口湖']},
-  {date:'12.30', wd:'周三', node:'kawaguchiko', stage:'河口湖 · 富士山', title:'富士山观景日', city:'河口湖', hotel:'河口湖酒店 ②', items:['08:30 浅间公园','10:30 环湖骑行','14:00 忍野八海','16:00 大石公园日落']},
-  {date:'12.31', wd:'周四', node:'tokyo', stage:'河口湖 → 东京', title:'河口湖 → 东京跨年', city:'东京', hotel:'东京浅草酒店 ①', items:['11:00 富士回游','13:35 到浅草','15:30 浅草寺','22:30 跨年三选一']},
-  {date:'01.01', wd:'周五', node:'tokyo', stage:'东京 · 初诣', title:'东京初诣', city:'东京', hotel:'东京浅草酒店 ②', items:['07:00 浅草寺','10:00 明治神宫','12:00 表参道','15:00 涩谷']},
-  {date:'01.02', wd:'周六', node:'tokyo', stage:'东京 · 涩谷', title:'原宿、涩谷', city:'东京', hotel:'东京浅草酒店 ③', items:['10:00 原宿','14:00 涩谷','16:00 Shibuya Sky','18:30 晚餐']},
-  {date:'01.03', wd:'周日', node:'tokyo', stage:'东京 · 上野', title:'上野、秋叶原', city:'东京', hotel:'东京浅草酒店 ④', items:['09:30 上野公园','东京国立博物馆','12:00 阿美横丁','14:00 秋叶原']},
-  {date:'01.04', wd:'周一', node:'tokyo', stage:'东京 · 银座', title:'银座、东京站', city:'东京', hotel:'东京浅草酒店 ⑤', items:['08:30 筑地场外市场','10:30 银座','13:00 东京站','17:30 六本木（可选）']},
-  {date:'01.05', wd:'周二', node:'shanghai', stage:'东京 → 上海', title:'东京 → 上海', city:'上海', hotel:'上海浦东机场附近（未订）', items:['10:30 退房','10:45 都营浅草 → 成田','14:20 起飞','17:00 浦东 T2']},
-  {date:'01.06', wd:'周三', node:'wuhan', stage:'上海 → 武汉', title:'上海 → 武汉', city:'武汉', hotel:'回家', items:['08:30 酒店接驳','10:45 浦东起飞','12:45 武汉 T3']}
-];
 
 const DEFAULT_TODOS = [
-  {id:'t1', text:'订 12.22 广州白云机场附近酒店', due:'2026-11-15', pri:'high', done:false},
-  {id:'t2', text:'订 1.5 上海浦东机场附近酒店（确认清晨接驳）', due:'2026-11-15', pri:'high', done:false},
-  {id:'t3', text:'周游券绑定 App，启用 12.23—12.29 连续 7 天', due:'2026-12-01', pri:'high', done:false},
-  {id:'t4', text:'周游券预约 USJ 12.25＋快速通关项目', due:'2026-11-30', pri:'high', done:false},
-  {id:'t5', text:'联系大阪酒店关联两张订单，确认 12.25 不用换房', due:'2026-12-01', pri:'high', done:false},
-  {id:'t6', text:'预约 12.29 三岛 14:05 → 河口湖 富士急巴士', due:'2026-12-01', pri:'high', done:false},
-  {id:'t7', text:'预约 12.31 河口湖 11:00 → 新宿 富士回游指定席', due:'2026-12-01', pri:'high', done:false},
-  {id:'t8', text:'预约 1.2 16:00 Shibuya Sky 日落场', due:'2026-12-15', pri:'mid', done:false},
-  {id:'t9', text:'预订 12.31 东京跨年晚餐', due:'2026-12-20', pri:'mid', done:false},
-  {id:'t10', text:'预订 1.1 东京晚餐', due:'2026-12-20', pri:'mid', done:false},
-  {id:'t11', text:'预约京都餐厅（广川鳗鱼/菊乃井/瓢亭等）', due:'2026-12-10', pri:'mid', done:false},
-  {id:'t12', text:'联系河口湖酒店确认禁烟房/富士山景', due:'2026-11-30', pri:'mid', done:false},
-  {id:'t13', text:'购买旅行保险', due:'2026-12-01', pri:'mid', done:false},
-  {id:'t14', text:'Visit Japan Web 登记入境信息', due:'2026-12-15', pri:'high', done:false},
+  {id:'t29', text:'办日本签证：普通护照需个人旅游签，本周确认领区与代办', due:'2026-10-31', pri:'high', done:false},
+  {id:'t30', text:'在 Travel Contents App 核实周游券豪华版是否真含 USJ Studio Pass + 快通', due:'2026-10-21', pri:'high', done:false},
   {id:'t15', text:'检查护照有效期（大于行程结束 6 个月）', due:'2026-11-01', pri:'high', done:false},
-  {id:'t16', text:'买 14 天日本 eSIM，确认支持热点', due:'2026-12-15', pri:'low', done:false},
-  {id:'t17', text:'预约 12.28 京都 → 东京酒店行李宅急便', due:'2026-12-27', pri:'low', done:false},
-  {id:'t18', text:'12.17 前确认京都酒店（之后不可退）', due:'2026-12-16', pri:'high', done:false},
-  {id:'t19', text:'12.24 前确认东京酒店（之后退订收 10%）', due:'2026-12-23', pri:'high', done:false},
-  {id:'t20', text:'12.28 前确认河口湖酒店（之后收第一晚）', due:'2026-12-27', pri:'mid', done:false},
-  {id:'t21', text:'12.24 09:00 前确认大阪 12.25 那晚订单', due:'2026-12-23', pri:'high', done:false},
-  {id:'t22', text:'确认京都酒店预授权扣款', due:'2026-12-14', pri:'mid', done:false},
-  {id:'t23', text:'确认东京酒店预授权扣款', due:'2026-12-21', pri:'mid', done:false},
-  {id:'t24', text:'确认河口湖酒店预授权扣款', due:'2026-12-25', pri:'mid', done:false},
+  {id:'t1', text:'订 12.22 广州白云机场附近酒店（24h 前台 + 免费接驳）', due:'2026-11-10', pri:'high', done:false},
+  {id:'t2', text:'订 1.5 上海浦东机场附近酒店（确认清晨接驳）', due:'2026-11-10', pri:'high', done:false},
+  {id:'t12', text:'联系河口湖酒店确认禁烟房/富士山景（订到的是吸烟房）', due:'2026-11-15', pri:'mid', done:false},
+  {id:'t31', text:'打南航 95539 确认 1.6 浦东→武汉 国内段免费行李额', due:'2026-11-20', pri:'high', done:false},
+  {id:'t13', text:'买旅行保险（医疗直付 + 航班/行李延误）', due:'2026-11-20', pri:'mid', done:false},
+  {id:'t11', text:'预约京都餐厅（12.26/12.27 晚餐，1 人优先寿司柜台）', due:'2026-11-20', pri:'mid', done:false},
+  {id:'t9', text:'预订 12.31 东京跨年晚餐', due:'2026-11-20', pri:'mid', done:false},
+  {id:'t10', text:'预订 1.1 东京晚餐', due:'2026-11-20', pri:'mid', done:false},
+  {id:'t4', text:'周游券预约 USJ 12.25 入园＋快速通关项目', due:'2026-11-25', pri:'high', done:false},
+  {id:'t6', text:'11/29 10:00(JST) 抢 12.29 三岛 14:20 → 河口湖 巴士 + 京都→三岛新干线指定席', due:'2026-11-29', pri:'high', done:false},
+  {id:'t7', text:'11/30 10:00(JST) 抢 12.31 河口湖 14:08 → 新宿 富士回遊指定席', due:'2026-11-30', pri:'high', done:false},
+  {id:'t3', text:'周游券绑定 App，启用 12.23—12.29 连续 7 天', due:'2026-12-01', pri:'high', done:false},
+  {id:'t5', text:'联系大阪酒店关联两张订单，确认 12.25 不用换房', due:'2026-12-01', pri:'high', done:false},
+  {id:'t8', text:'预约 1.2 16:00 Shibuya Sky 日落场', due:'2026-12-05', pri:'mid', done:false},
+  {id:'t35', text:'复查中国领事 App / 驻日使馆安全提醒，并与保险公司确认是否承保', due:'2026-12-05', pri:'mid', done:false},
+  {id:'t32', text:'换 3—5 万日元现金；IC 卡（Suica / ICOCA）充值', due:'2026-12-10', pri:'mid', done:false},
+  {id:'t14', text:'Visit Japan Web 登记入境信息（可同时在线办免税税关确认）', due:'2026-12-10', pri:'high', done:false},
+  {id:'t16', text:'买 15 天日本 eSIM，确认支持热点', due:'2026-12-10', pri:'low', done:false},
+  {id:'t18', text:'12.17 前最后确认京都酒店（之后不可退）', due:'2026-12-14', pri:'high', done:false},
+  {id:'t22', text:'确认京都酒店预授权扣款', due:'2026-12-15', pri:'mid', done:false},
+  {id:'t33', text:'把免税品集中到一个随身箱：1.5 到成田先办税关确认再托运', due:'2026-12-20', pri:'mid', done:false},
+  {id:'t23', text:'确认东京酒店预授权扣款', due:'2026-12-22', pri:'mid', done:false},
+  {id:'t19', text:'12.24 前确认东京酒店（之后退订收 10%）', due:'2026-12-22', pri:'high', done:false},
+  {id:'t21', text:'确认大阪 12.25 那晚订单（12.24 09:00 后不可退）', due:'2026-12-22', pri:'high', done:false},
+  {id:'t24', text:'确认河口湖酒店预授权扣款', due:'2026-12-26', pri:'mid', done:false},
+  {id:'t20', text:'12.28 前确认河口湖酒店（之后收第一晚）', due:'2026-12-26', pri:'mid', done:false},
+  {id:'t17', text:'12.28 晚在前台填宅急便单：大件寄东京酒店，指定 12.30 着', due:'2026-12-28', pri:'mid', done:false},
   {id:'t25', text:'12.27 晚查富士山天气，决定 12.30 行程', due:'2026-12-27', pri:'high', done:false},
-  {id:'t26', text:'12.30 晚确认 12.31 富士回游/巴士', due:'2026-12-30', pri:'mid', done:false},
-  {id:'t27', text:'1.4 晚收拾行李，确认浅草 → 成田路线', due:'2027-01-04', pri:'mid', done:false},
-  {id:'t28', text:'12.30 决定 12.31 跨年地点（浅草寺/都厅/王子）', due:'2026-12-30', pri:'high', done:false}
+  {id:'t34', text:'预约 12.30 17:00 ゆらり 日归温泉（须提前 1 小时网上预约）', due:'2026-12-30', pri:'low', done:false},
+  {id:'t28', text:'12.30 确认浅草寺跨年动线与集合点（都厅 / 王子仅备选）', due:'2026-12-30', pri:'high', done:false},
+  {id:'t26', text:'12.30 晚确认 12.31 富士回遊 14:08（或改高速巴士）', due:'2026-12-30', pri:'mid', done:false},
+  {id:'t27', text:'1.4 晚收拾行李，确认浅草 → 成田路线', due:'2027-01-04', pri:'mid', done:false}
 ];
 
 const SHOPS = [
@@ -1090,7 +1021,7 @@ const SHOPS = [
   {city:'大阪', name:'空庭温泉', type:'温泉', area:'弁天町', note:'周游券可用；USJ 之后泡汤恢复体力，营业到较晚。'},
   {city:'大阪', name:'阪急うめだ本店', type:'百货', area:'梅田', note:'地下食品层很适合买晚餐和伴手礼。'},
   {city:'大阪', name:'新世界 串炸横纲', type:'串炸', area:'新世界', note:'通天阁一带的串炸，适合夜景后吃。'},
-  {city:'大阪', name:'阿倍野 HARUKAS 300', type:'展望台', area:'天王寺', note:'周游券可用；夜景比白天更值。'},
+  {city:'大阪', name:'阿倍野 HARUKAS 300', type:'展望台', area:'天王寺', note:'周游券可用；已排在 12.24 中午 11:30（白天看城市）。9:00 开门，最晚入场 22:00。12.23 晚已排道顿堀，不回头。'},
 
   {city:'京都', name:'奥丹 清水', type:'汤豆腐', area:'清水寺', note:'清水寺参道上的汤豆腐老店，适合中午。'},
   {city:'京都', name:'菊乃井 本店', type:'怀石', area:'东山', note:'米其林怀石，必须提前很久预约；预算高。'},
@@ -1114,7 +1045,7 @@ const SHOPS = [
   {city:'河口湖', name:'天上山公园缆车', type:'展望台', area:'河口湖', note:'缆车上山俯瞰湖景；天气不好就别上。'},
   {city:'河口湖', name:'音乐盒之森美术馆', type:'博物馆', area:'河口湖', note:'欧式庭园和音乐盒，雨天备选。'},
   {city:'河口湖', name:'忍野八海', type:'涌泉', area:'忍野', note:'名水村，游客多；早去或傍晚去。'},
-  {city:'河口湖', name:'河口湖温泉', type:'温泉', area:'河口湖', note:'酒店泡汤最省事；酒店有接驳。'},
+  {city:'河口湖', name:'ゆらり（日归温泉）', type:'温泉', area:'河口湖', note:'1,700 円含毛巾，10:00—22:00，年中无休；河口湖站免费接驳只有 11:00/13:00/15:00/18:00 四班，必须提前 1 小时网上预约。住的酒店没有大浴场。'},
 
   {city:'东京', name:'浅草 今半 本店', type:'寿喜烧', area:'浅草', note:'寿喜烧老铺，必须预约；预算较高。'},
   {city:'东京', name:'大黑家 天妇罗', type:'天妇罗', area:'浅草', note:'浅草老铺，天丼酱汁浓；饭点排队。'},
@@ -1147,18 +1078,22 @@ const DAIGOU = [
 ];
 
 const PACKING = [
-  '护照 + 签证/免签确认',
+  '护照 + 有效日本签证',
   '机票/酒店确认单（离线截图）',
   'Visit Japan Web QR',
-  '旅行保险',
-  'eSIM/漫游 + 充电宝',
-  '信用卡 + 现金 ¥3 万',
-  '保暖内衣/羽绒/围巾',
-  '防滑鞋',
-  '转换插头',
-  '常用药',
-  '雨具',
-  '折叠行李袋/行李秤'
+  '旅行保险单（含救援电话）',
+  'eSIM / 漫游已开通 + 充电宝',
+  '日元现金 ¥30,000—50,000 + 信用卡',
+  'IC 卡（Suica / ICOCA）或手机钱包',
+  '保暖内衣 / 羽绒 / 围巾 / 毛线帽',
+  '防滑鞋（河口湖可能结冰）',
+  '暖宝宝',
+  '转换插头（日本 A 型 100V）',
+  '常用药 + 感冒药 + 创可贴',
+  '雨具（折叠伞）',
+  '折叠行李袋 / 行李秤',
+  '免税小票收纳袋',
+  '参拜零钱（5 円 / 50 円）'
 ];
 
 const WEATHER = [
@@ -1223,7 +1158,7 @@ let saveTimer = null;
 function prepState(p){
   p = p || {};
   return {
-    budget: Object.assign({osaka:1200, food:180, transport:80, intercity:1200, tickets:2000, shopping:3000}, p.budget || {}),
+    budget: Object.assign({osaka:1200, airport:900, food:150, transport:1250, intercity:1680, tickets:800, shopping:3000}, p.budget || {}),
     packing: p.packing || {}
   };
 }
@@ -1394,7 +1329,7 @@ function updateDaigouSummary(){
 
 function updateBudget(){
   const b = state.prep.budget;
-  const total = 9927 + Number(b.osaka || 0) + ((Number(b.food || 0) + Number(b.transport || 0)) * 14) + Number(b.intercity || 0) + Number(b.tickets || 0) + Number(b.shopping || 0);
+  const total = 9927 + Number(b.osaka || 0) + Number(b.airport || 0) + (Number(b.food || 0) * 15) + Number(b.transport || 0) + Number(b.intercity || 0) + Number(b.tickets || 0) + Number(b.shopping || 0);
   const el = document.getElementById('budgetTotal');
   if(el) el.textContent = '¥' + total.toLocaleString('zh-CN');
 }
@@ -1432,7 +1367,7 @@ function updateTheoRitual(){
 }
 
 function renderPrep(){
-  const ids = {osaka:'budgetOsaka', food:'budgetFood', transport:'budgetTransport', intercity:'budgetIntercity', tickets:'budgetTickets', shopping:'budgetShopping'};
+  const ids = {osaka:'budgetOsaka', airport:'budgetAirport', food:'budgetFood', transport:'budgetTransport', intercity:'budgetIntercity', tickets:'budgetTickets', shopping:'budgetShopping'};
   Object.keys(ids).forEach(k => {
     const el = document.getElementById(ids[k]);
     if(el) el.value = state.prep.budget[k];
@@ -1443,6 +1378,8 @@ function renderPrep(){
   const days = Math.max(0, Math.ceil((start - today) / 86400000));
   const dl = document.getElementById('daysLeft');
   if(dl) dl.textContent = days;
+  const vdl = document.getElementById('visaDaysLeft');
+  if(vdl) vdl.textContent = days > 0 ? days + ' 天' : '已出发';
   updateTheoRitual();
   updateNextTodo();
   const pack = document.getElementById('packingList');
@@ -1556,97 +1493,6 @@ function animateDays(){
   });
 }
 
-let animT = 0;
-let animPlaying = false;
-let animSpeed = 1;
-let animLast = 0;
-let animRAF = null;
-
-function animPos(t){
-  const k = ANIM_KEYFRAMES;
-  if(t <= k[0].t) return {...ANIM_CITIES[k[0].city]};
-  for(let i = 0; i < k.length - 1; i++){
-    if(t >= k[i].t && t <= k[i+1].t){
-      const a = ANIM_CITIES[k[i].city];
-      const b = ANIM_CITIES[k[i+1].city];
-      const f = (t - k[i].t) / (k[i+1].t - k[i].t);
-      return {x:a.x + (b.x - a.x) * f, y:a.y + (b.y - a.y) * f};
-    }
-  }
-  return {...ANIM_CITIES[k[k.length - 1].city]};
-}
-
-function animRender(){
-  const t = Math.max(0, Math.min(15, animT));
-  const p = animPos(t);
-  const marker = document.getElementById('animMarker');
-  if(!marker) return;
-  marker.setAttribute('transform', 'translate(' + p.x + ',' + p.y + ')');
-  const trail = document.getElementById('animTrail');
-  if(trail) trail.setAttribute('stroke-dashoffset', String(1 - t / 15));
-  const day = Math.min(15, Math.round(t));
-  const d = ANIM_DAYS[day];
-  document.getElementById('animDate').textContent = d.date;
-  document.getElementById('animStage').textContent = d.stage;
-  document.getElementById('animKicker').textContent = 'DAY ' + (day + 1) + ' · ' + d.date + ' ' + d.wd;
-  document.getElementById('animTitle').textContent = d.title;
-  document.getElementById('animCity').textContent = '今日城市：' + d.city;
-  document.getElementById('animItems').innerHTML = d.items.map(x => '<li>' + escapeHtml(x) + '</li>').join('');
-  document.getElementById('animHotel').textContent = '宿 · ' + d.hotel;
-  document.getElementById('animBar').style.width = (t / 15 * 100) + '%';
-  document.getElementById('animIcon').textContent = t < 1 ? '✈' : (t < 6.5 ? '🚄' : (t < 8.5 ? '🚌' : (t < 13.4 ? '🚄' : '✈')));
-  document.querySelectorAll('.anim-node').forEach(n => {
-    n.classList.toggle('visited', day >= Number(n.dataset.visit));
-    n.classList.toggle('active', n.dataset.node === d.node);
-  });
-}
-
-function animStep(ts){
-  if(!animPlaying) return;
-  if(!animLast) animLast = ts;
-  const dt = Math.min(0.1, (ts - animLast) / 1000);
-  animLast = ts;
-  animT += dt * (15 / 48) * animSpeed;
-  if(animT >= 15){
-    animT = 15;
-    animPlaying = false;
-    document.getElementById('animPlay').textContent = '重播';
-  }
-  animRender();
-  if(animPlaying) animRAF = requestAnimationFrame(animStep);
-}
-
-function animPause(){
-  animPlaying = false;
-  cancelAnimationFrame(animRAF);
-  const btn = document.getElementById('animPlay');
-  if(btn) btn.textContent = animT >= 15 ? '重播' : '播放';
-}
-
-function animToggle(){
-  if(animPlaying){ animPause(); return; }
-  if(animT >= 15) animT = 0;
-  animPlaying = true;
-  animLast = 0;
-  document.getElementById('animPlay').textContent = '暂停';
-  cancelAnimationFrame(animRAF);
-  animRAF = requestAnimationFrame(animStep);
-}
-
-function animRestart(){
-  animT = 0;
-  animPlaying = true;
-  animLast = 0;
-  document.getElementById('animPlay').textContent = '暂停';
-  cancelAnimationFrame(animRAF);
-  animRender();
-  animRAF = requestAnimationFrame(animStep);
-}
-
-function animToggleSpeed(){
-  animSpeed = animSpeed === 1 ? 2 : 1;
-  document.getElementById('animSpeed').textContent = animSpeed + '×';
-}
 
 let realMap = null;
 let mapLayers = null;
@@ -1659,7 +1505,7 @@ const MAP_STOPS = [
   {name:'关西机场', date:'12.23 14:10', lat:34.4347, lon:135.2440, color:'#5C5A56', r:5, main:false, popup:'12.23 14:10 抵达关西 T1；利木津巴士到难波。'},
   {name:'大阪', date:'3 晚 · 12.23—26', lat:34.6937, lon:135.5023, color:'#D93A2B', r:7, main:true, dir:'bottom', popup:'大阪难波南，3 晚。12.25 环球影城。'},
   {name:'京都', date:'3 晚 · 12.26—29', lat:35.0116, lon:135.7681, color:'#1D3B5E', r:7, main:true, dir:'top', popup:'京都清水五条，3 晚。12.26 大阪退房后移动。'},
-  {name:'三岛', date:'12.29 换巴士', lat:35.1185, lon:138.9186, color:'#5C5A56', r:5, main:false, popup:'12.29 新干线到三岛，换富士急巴士去河口湖。'},
+  {name:'三岛', date:'12.29 换巴士', lat:35.1185, lon:138.9186, color:'#5C5A56', r:5, main:false, popup:'12.29 新干线 13:37 到三岛；14:20 富士急〈特急〉三島・河口湖ライナー（全席指定，11/29 开售），15:50 到河口湖。'},
   {name:'河口湖', date:'2 晚 · 12.29—31', lat:35.5171, lon:138.7518, color:'#3E6B4F', r:7, main:true, dir:'left', popup:'河口湖酒店，2 晚。12.30 富士山观景。'},
   {name:'东京', date:'5 晚 · 12.31—1.5', lat:35.6812, lon:139.7671, color:'#D93A2B', r:7, main:true, dir:'right', popup:'东京浅草酒店，5 晚。12.31 东京跨年。'},
   {name:'成田机场', date:'1.5 14:20', lat:35.7720, lon:140.3929, color:'#5C5A56', r:5, main:false, popup:'1.5 14:20 航班起飞，17:00 到浦东 T2。'},
@@ -1867,7 +1713,7 @@ document.getElementById('daigouNote').addEventListener('input', e => {
   saveDebounced();
 });
 
-const BUDGET_INPUTS = {budgetOsaka:'osaka', budgetFood:'food', budgetTransport:'transport', budgetIntercity:'intercity', budgetTickets:'tickets', budgetShopping:'shopping'};
+const BUDGET_INPUTS = {budgetOsaka:'osaka', budgetAirport:'airport', budgetFood:'food', budgetTransport:'transport', budgetIntercity:'intercity', budgetTickets:'tickets', budgetShopping:'shopping'};
 Object.keys(BUDGET_INPUTS).forEach(id => {
   const el = document.getElementById(id);
   if(el) el.addEventListener('input', () => {
@@ -1893,8 +1739,6 @@ document.querySelectorAll('[data-tab]').forEach(btn => {
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
     if(btn.dataset.tab === 'days') animateDays();
-    if(btn.dataset.tab === 'anim') animRender();
-    else if(animPlaying) animPause();
     if(btn.dataset.tab === 'map'){
       initRealMap();
       setTimeout(() => { if(realMap) realMap.invalidateSize(); }, 80);
@@ -1929,9 +1773,6 @@ document.getElementById('xhsFilters').addEventListener('click', e => {
 
 document.getElementById('shopSearch').addEventListener('input', renderShops);
 document.getElementById('weatherBtn').addEventListener('click', fetchForecast);
-document.getElementById('animPlay').addEventListener('click', animToggle);
-document.getElementById('animRestart').addEventListener('click', animRestart);
-document.getElementById('animSpeed').addEventListener('click', animToggleSpeed);
 
 document.getElementById('exportBtn').addEventListener('click', () => {
   const data = {version:1, exportedAt:new Date().toISOString(), state};
@@ -2031,7 +1872,6 @@ applyTheme();
 renderAll();
 initWeather();
 initSchematicClone();
-animRender();
 </script>
 </body>
 </html>
